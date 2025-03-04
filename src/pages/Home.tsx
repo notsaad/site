@@ -59,19 +59,19 @@ const Home: React.FC = () => {
     <HomeContainer>
       <HeroContent>
         <Greeting>Hello, my name is</Greeting>
-        <Name>John Doe</Name>
+        <Name>Saad Mazhar</Name>
         <Headline>I build things for the web</Headline>
         <Description>
           I'm a frontend developer specializing in building exceptional digital experiences.
           Currently, I'm focused on creating accessible, user-centered products.
         </Description>
         <CTAContainer>
-          <Button as={Link} to="/projects">
+          <a href="/projects">
             View Projects
-          </Button>
-          <Button as={Link} to="/contact" primary={false}>
+          </a>
+          <a href="/contact">
             Get in Touch
-          </Button>
+          </a>
         </CTAContainer>
       </HeroContent>
     </HomeContainer>

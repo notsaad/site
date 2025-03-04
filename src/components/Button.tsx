@@ -9,7 +9,9 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   children: React.ReactNode;
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
+  target?: string;
 }
 
 const StyledButton = styled.button<ButtonProps>`

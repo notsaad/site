@@ -90,12 +90,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </TechStack>
         <ProjectLinks>
           {liveLink && (
-            <Button as="a" href={liveLink} target="_blank" rel="noopener noreferrer" small>
+            <Button as="a" href={liveLink} target="_blank" small>
               View Demo
             </Button>
           )}
           {codeLink && (
-            <Button as="a" href={codeLink} target="_blank" rel="noopener noreferrer" primary={false} small>
+            <Button as="a" href={codeLink} target="_blank" primary={false} small>
               View Code
             </Button>
           )}

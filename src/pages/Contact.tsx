@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
               <ContactIcon>📧</ContactIcon>
               <ContactText>
                 <ContactTitle>Email</ContactTitle>
-                <ContactValue href="mailto:john.doe@example.com">john.doe@example.com</ContactValue>
+                <ContactValue href="mailto:john.doe@example.com">saadmazhar@me.com</ContactValue>
               </ContactText>
             </ContactMethod>
             
@@ -198,7 +198,7 @@ const Contact: React.FC = () => {
               <ContactIcon>📱</ContactIcon>
               <ContactText>
                 <ContactTitle>Phone</ContactTitle>
-                <ContactValue href="tel:+11234567890">+1 (123) 456-7890</ContactValue>
+                <ContactValue href="tel:+11234567890">+1 (613) 854-8618</ContactValue>
               </ContactText>
             </ContactMethod>
             
