@@ -1,8 +1,9 @@
-import React from 'react';
 import Layout from './components/Layout';
 import Header from './components/Header';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import { ThemeProvider } from './components/ThemeProvider';
+import ThemeToggle from './components/ThemeToggle';
 
 const projects = [
   {
@@ -21,7 +22,7 @@ const contactLinks = [
     text: "Email Me"
   },
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/notsaad",
     text: "GitHub",
     external: true
   }
@@ -29,14 +30,19 @@ const contactLinks = [
 
 function App() {
   return (
-    <Layout>
-      <Header
-        name="Saad Mazhar"
-        bio="Frontend developer specializing in building exceptional digital experiences. Currently focused on creating accessible, user-centered products."
-      />
-      <Projects projects={projects} />
-      <Contact links={contactLinks} />
-    </Layout>
+    <ThemeProvider>
+      <Layout>
+        <ThemeToggle />
+        <Header
+          name="SAAD MAZHAR"
+          bio="Software engineer,
+              Currently focused on creating accessible, 
+              user-centered products."
+        />
+        <Projects projects={projects} />
+        <Contact links={contactLinks} />
+      </Layout>
+    </ThemeProvider>
   );
 }
 

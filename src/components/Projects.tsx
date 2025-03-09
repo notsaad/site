@@ -11,12 +11,12 @@ const ProjectsGrid = styled.div`
 
 const ProjectCard = styled.div`
   padding: 1.5rem;
-  border: 1px solid #eaeaea;
+  border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: #000;
+    border-color: #cccccc;
   }
 `;
 

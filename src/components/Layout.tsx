@@ -1,37 +1,54 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
+import { theme } from '../styles/theme';
+import { useTheme } from './ThemeProvider';
 
-const GlobalStyle = createGlobalStyle`
+const Container = styled.div<{ isDark: boolean }>`
+  font-family: ${theme.typography.fontFamily};
+  font-size: ${theme.typography.fontSize};
+  line-height: ${theme.typography.lineHeight};
+  max-width: 80ch;
+  margin: 0 auto;
+  padding: ${theme.spacing.grid};
+  
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: #fff;
-    color: #000;
-    line-height: 1.6;
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: normal;
+    margin: ${theme.spacing.grid} 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: ${theme.borders.style};
+    border-color: ${props => props.isDark ? theme.colors.dark.border : theme.colors.light.border};
+    
+    &:hover {
+      background-color: ${props => props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+    }
   }
 `;
 
-const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
+const Border = styled.div<{ isDark: boolean }>`
+  border: ${theme.borders.style};
+  border-color: ${props => props.isDark ? theme.colors.dark.border : theme.colors.light.border};
+  padding: ${theme.spacing.grid};
+  margin-bottom: ${theme.spacing.grid};
 `;
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isDarkMode } = useTheme();
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
-      <GlobalStyle />
-      <Container>{children}</Container>
-    </>
+    <Container isDark={isDarkMode}>
+      <Border isDark={isDarkMode}>
+        {children}
+      </Border>
+    </Container>
   );
 };
 
