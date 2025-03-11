@@ -10,9 +10,12 @@ const ToggleContainer = styled.div`
   font-family: ${theme.typography.fontFamily};
   cursor: pointer;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing.unit};
 `;
 
-const ToggleBox = styled.div<{ isDark: boolean }>`
+const ToggleBox = styled.div<{ isDark?: boolean }>`
   display: inline-block;
   padding: ${theme.spacing.unit};
   border: ${theme.borders.style};
@@ -27,9 +30,13 @@ const ThemeToggle: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <ToggleContainer onClick={toggleTheme}>
-      <ToggleBox isDark={isDarkMode}>
+    <ToggleContainer>
+      <ToggleBox isDark={isDarkMode} onClick={toggleTheme}>
         [ {isDarkMode ? 'LIGHT' : 'DARK'} ]
+      </ToggleBox>
+      {/* TODO: make the click lead to the saadgpt route of the site */}
+      <ToggleBox isDark={isDarkMode}>
+        [ SAADGPT ]
       </ToggleBox>
     </ToggleContainer>
   );

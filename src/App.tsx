@@ -18,16 +18,22 @@ const projects = [
 
 const contactLinks = [
   {
-    href: "mailto:your.email@example.com",
+    href: "mailto:saadmazhar@me.com",
     text: "Email Me"
   },
   {
-    href: "https://github.com/notsaad",
+    href: "https://www.github.com/notsaad",
     text: "GitHub",
     external: true
-  }
+  },
+  {
+    href: "https://www.linkedin.com/in/notsaad",
+    text: "LinkedIn",
+    external: true
+  },
 ];
 
+// TODO: add an education and experience section
 function App() {
   return (
     <ThemeProvider>
@@ -35,6 +41,7 @@ function App() {
         <ThemeToggle />
         <Header
           name="SAAD MAZHAR"
+          email="saadmazhar@me.com"
           bio="Software engineer,
               Currently focused on creating accessible, 
               user-centered products."

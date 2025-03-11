@@ -13,10 +13,11 @@ const Bio = styled.p`
 
 interface HeaderProps {
   name: string;
+  email: string;
   bio: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ name, bio }) => {
+const Header: React.FC<HeaderProps> = ({ name, email, bio }) => {
   return (
     <header
       style={{
@@ -33,6 +34,17 @@ const Header: React.FC<HeaderProps> = ({ name, bio }) => {
       >
         {name}
       </h1>
+      {/* TODO: make the email clickable */}
+      <h3
+        style={{
+          fontSize: '1.125rem',
+          color: '#AAA',
+          maxWidth: '600px',
+          marginBottom: '0.25em',
+        }}
+      >
+        {email.toUpperCase()}
+      </h3>
       <p
         style={{
           fontSize: '1.125rem',
