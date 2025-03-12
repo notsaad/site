@@ -45,12 +45,30 @@ const education = [
 
 const experiences = [
   {
-    company: "Company Name",
-    title: "Job Title",
-    location: "City, Country",
-    period: "Month Year - Month Year",
-    description: "• Key achievement or responsibility\n• Another key achievement\n• One more achievement"
+    company: "Tesla",
+    title: "Software Engineer Intern",
+    location: "Palo Alto, California, USA",
+    period: "January 2025 - August 2025",
+  },
+  {
+    company: "Nokia",
+    title: "Embedded Software Engineer Intern",
+    location: "Ottawa, Ontario, Canada",
+    period: "May 2024 - August 2024",
+  },
+  {
+    company: "Nokia",
+    title: "Software Engineer Intern",
+    location: "Ottawa, Ontario, Canada",
+    period: "September 2023 - Decemeber 2023",
+  },
+  {
+    company: "Diffraction Limited",
+    title: "Software Engineer Intern",
+    location: "Ottawa, Ontario, Canada",
+    period: "May 2023 - August 2023",
   }
+
 ];
 
 // TODO: add an education and experience section

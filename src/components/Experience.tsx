@@ -55,7 +55,6 @@ interface ExperienceEntry {
   title: string;
   location: string;
   period: string;
-  description: string;
 }
 
 interface ExperienceProps {
@@ -75,7 +74,6 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
               <Location>{entry.location}</Location>
               <Period>{entry.period}</Period>
             </LocationAndDate>
-            <Description>{entry.description}</Description>
           </ExperienceItem>
         ))}
       </ExperienceList>
