@@ -2,6 +2,8 @@ import Layout from './components/Layout';
 import Header from './components/Header';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Education from './components/Education';
+import Experience from './components/Experience';
 import { ThemeProvider } from './components/ThemeProvider';
 import ThemeToggle from './components/ThemeToggle';
 
@@ -33,6 +35,24 @@ const contactLinks = [
   },
 ];
 
+const education = [
+  {
+    institution: "University of Ottawa",
+    degree: "Joint Honours Computer Science and Mathematics",
+    period: "Expected April 2026"
+  }
+];
+
+const experiences = [
+  {
+    company: "Company Name",
+    title: "Job Title",
+    location: "City, Country",
+    period: "Month Year - Month Year",
+    description: "• Key achievement or responsibility\n• Another key achievement\n• One more achievement"
+  }
+];
+
 // TODO: add an education and experience section
 function App() {
   return (
@@ -46,6 +66,8 @@ function App() {
               Currently focused on creating accessible, 
               user-centered products."
         />
+        <Education education={education} />
+        <Experience experiences={experiences} />
         <Projects projects={projects} />
         <Contact links={contactLinks} />
       </Layout>
