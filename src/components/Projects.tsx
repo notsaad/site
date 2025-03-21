@@ -9,14 +9,18 @@ const ProjectsGrid = styled.div`
   margin-top: 2rem;
 `;
 
-const ProjectCard = styled.div`
+const ProjectCard = styled.a`
   padding: 1.5rem;
   border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 
   &:hover {
     border-color: #cccccc;
+    transform: translateY(-2px);
   }
 `;
 
@@ -33,6 +37,7 @@ const ProjectDescription = styled.p`
 interface Project {
   title: string;
   description: string;
+  link: string;
 }
 
 interface ProjectsProps {
@@ -45,7 +50,12 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <SectionTitle>Selected Projects</SectionTitle>
       <ProjectsGrid>
         {projects.map((project, index) => (
-          <ProjectCard key={index}>
+          <ProjectCard 
+            key={index} 
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
           </ProjectCard>

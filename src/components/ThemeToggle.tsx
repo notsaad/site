@@ -38,6 +38,9 @@ const ThemeToggle: React.FC = () => {
       <ToggleBox isDark={isDarkMode}>
         [ SAADGPT ]
       </ToggleBox>
+      <ToggleBox isDark={isDarkMode}>
+        [ RESUME ]
+      </ToggleBox>
     </ToggleContainer>
   );
 };

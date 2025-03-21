@@ -7,14 +7,17 @@ import Experience from './components/Experience';
 import { ThemeProvider } from './components/ThemeProvider';
 import ThemeToggle from './components/ThemeToggle';
 
+// TODO: fix padding and margins
 const projects = [
   {
-    title: "Project One",
-    description: "A web application built with React and TypeScript, focusing on performance and accessibility."
+    title: "HABO Framework for Hyperparameter Optimization - Research Paper",
+    description: "A research paper in the field of reinforcment learning. Supervised by Dr. Tom Cesari at the University of Ottawa, EECS department.",
+    link: "https://arxiv.org/abs/2503.10282"
   },
   {
     title: "Project Two",
-    description: "An e-commerce platform with modern design patterns and seamless user experience."
+    description: "An e-commerce platform with modern design patterns and seamless user experience.",
+    link: "https://github.com/notsaad/project-two"
   }
 ];
 
@@ -39,7 +42,7 @@ const education = [
   {
     institution: "University of Ottawa",
     degree: "Joint Honours Computer Science and Mathematics",
-    period: "Expected April 2026"
+    period: "September 2021 - April 2026"
   }
 ];
 
@@ -47,25 +50,25 @@ const experiences = [
   {
     company: "Tesla",
     title: "Software Engineer Intern",
-    location: "Palo Alto, California, USA",
+    location: "Palo Alto, California",
     period: "January 2025 - August 2025",
   },
   {
     company: "Nokia",
     title: "Embedded Software Engineer Intern",
-    location: "Ottawa, Ontario, Canada",
+    location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
-    location: "Ottawa, Ontario, Canada",
+    location: "Ottawa, Ontario",
     period: "September 2023 - Decemeber 2023",
   },
   {
     company: "Diffraction Limited",
     title: "Software Engineer Intern",
-    location: "Ottawa, Ontario, Canada",
+    location: "Ottawa, Ontario",
     period: "May 2023 - August 2023",
   }
 
