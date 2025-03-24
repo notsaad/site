@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Section, SectionTitle } from './Section';
 
@@ -17,6 +17,7 @@ const ExperienceItem = styled.div`
 
   &:hover {
     border-color: #cccccc;
+    cursor: pointer;
   }
 `;
 
@@ -55,6 +56,7 @@ interface ExperienceEntry {
   title: string;
   location: string;
   period: string;
+  description: string;
 }
 
 interface ExperienceProps {
@@ -62,18 +64,37 @@ interface ExperienceProps {
 }
 
 const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
+  const [selectedItem, setSelectedItem] = useState<number|null>(null);
+
   return (
     <Section>
       <SectionTitle>Experience</SectionTitle>
       <ExperienceList>
         {experiences.map((entry, index) => (
-          <ExperienceItem key={index}>
+          <ExperienceItem 
+            key={index}
+            onClick={(e) => {
+                if (e.defaultPrevented){
+                  return;
+                }
+                if (index === selectedItem){
+                  setSelectedItem(null);
+                } else {
+                  setSelectedItem(index);
+                }
+              }
+            }
+          >
             <CompanyName>{entry.company}</CompanyName>
             <JobTitle>{entry.title}</JobTitle>
             <LocationAndDate>
               <Location>{entry.location}</Location>
               <Period>{entry.period}</Period>
             </LocationAndDate>
+            {/* TODO: make these bullet points? */}
+            {selectedItem === index && (
+              <Description>{entry.description}</Description>
+            )}
           </ExperienceItem>
         ))}
       </ExperienceList>

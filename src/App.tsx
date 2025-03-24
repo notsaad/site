@@ -15,7 +15,7 @@ const projects = [
     link: "https://arxiv.org/abs/2503.10282"
   },
   {
-    title: "Project Two",
+    title: "Sustain App",
     description: "An e-commerce platform with modern design patterns and seamless user experience.",
     link: "https://github.com/notsaad/project-two"
   }
@@ -52,24 +52,28 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
     period: "January 2025 - August 2025",
+    description: 'test',
   },
   {
     company: "Nokia",
     title: "Embedded Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
+    description: 'test',
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "September 2023 - Decemeber 2023",
+    description: 'test',
   },
   {
     company: "Diffraction Limited",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2023 - August 2023",
+    description: 'test',
   }
 
 ];
