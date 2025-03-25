@@ -10,10 +10,11 @@ const EducationList = styled.div`
 `;
 
 const EducationItem = styled.div`
-  padding: 1.5rem;
+  padding: 0 1rem 1rem 1rem;
   border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.2s ease;
+  margin-top: 0rem;
 
   &:hover {
     border-color: #cccccc;

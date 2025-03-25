@@ -5,12 +5,12 @@ import { Section, SectionTitle } from './Section';
 const ExperienceList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 2rem;
 `;
 
 const ExperienceItem = styled.div`
-  padding: 1.5rem;
+  padding: 0 1rem 0.5rem 1rem;
   border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -87,14 +87,14 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
           >
             <CompanyName>{entry.company}</CompanyName>
             <JobTitle>{entry.title}</JobTitle>
-            <LocationAndDate>
-              <Location>{entry.location}</Location>
-              <Period>{entry.period}</Period>
-            </LocationAndDate>
             {/* TODO: make these bullet points? */}
             {selectedItem === index && (
               <Description>{entry.description}</Description>
             )}
+            <LocationAndDate>
+              <Location>{entry.location}</Location>
+              <Period>{entry.period}</Period>
+            </LocationAndDate>
           </ExperienceItem>
         ))}
       </ExperienceList>

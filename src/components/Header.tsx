@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HeaderContainer = styled.header`
-  margin-bottom: 6rem;
-`;
-
 const Bio = styled.p`
   font-size: 1.125rem;
   color: #666;
@@ -21,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ name, email, bio }) => {
   return (
     <header
       style={{
-        marginBottom: '3rem',
+        marginBottom: '2rem',
       }}
     >
       <h1
@@ -29,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ name, email, bio }) => {
           fontSize: 'clamp(2rem, 5vw, 3rem)',
           fontWeight: 700,
           letterSpacing: '-0.02em',
+          marginTop: '0.5rem',
           marginBottom: '1rem',
         }}
       >

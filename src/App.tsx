@@ -41,8 +41,8 @@ const contactLinks = [
 const education = [
   {
     institution: "University of Ottawa",
-    degree: "Joint Honours Computer Science and Mathematics",
-    period: "September 2021 - April 2026"
+    degree: "Honours Bachelors in Computer Science",
+    period: "September 2021 - December 2025"
   }
 ];
 
@@ -56,7 +56,7 @@ const experiences = [
   },
   {
     company: "Nokia",
-    title: "Embedded Software Engineer Intern",
+    title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
     description: 'test',
@@ -65,7 +65,7 @@ const experiences = [
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
-    period: "September 2023 - Decemeber 2023",
+    period: "September 2023 - December 2023",
     description: 'test',
   },
   {
@@ -87,9 +87,7 @@ function App() {
         <Header
           name="SAAD MAZHAR"
           email="saadmazhar@me.com"
-          bio="Software engineer,
-              Currently focused on creating accessible, 
-              user-centered products."
+          bio="CS at uOttawa, Graduating December 2025. Looking for New Grad SWE/ML Roles."
         />
         <Education education={education} />
         <Experience experiences={experiences} />

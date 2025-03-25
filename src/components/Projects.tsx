@@ -9,21 +9,6 @@ const ProjectsGrid = styled.div`
   margin-top: 2rem;
 `;
 
-const ProjectCard = styled.a`
-  padding: 1.5rem;
-  border: 1px solid #444444;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-
-  &:hover {
-    border-color: #cccccc;
-    transform: translateY(-2px);
-  }
-`;
-
 const ProjectTitle = styled.h3`
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
@@ -32,6 +17,25 @@ const ProjectTitle = styled.h3`
 const ProjectDescription = styled.p`
   color: #666;
   font-size: 0.95rem;
+`;
+
+const ProjectCard = styled.a`
+  padding: 0 1rem 1rem 1rem;
+  border: 1px solid #444444;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  &:hover {
+    border-color: #CCCCCC;
+    transform: translateY(-2px);
+
+    ${ProjectDescription} {
+      color: #FFF;
+    }
+  }
 `;
 
 interface Project {
