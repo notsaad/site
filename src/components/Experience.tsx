@@ -28,8 +28,9 @@ const CompanyName = styled.h3`
 
 const JobTitle = styled.h4`
   font-size: 1.1rem;
+  line-height: 0;
   color: #666;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 `;
 
 const LocationAndDate = styled.div`
@@ -44,7 +45,7 @@ const Location = styled.span``;
 
 const Period = styled.span``;
 
-const Description = styled.p`
+const Description = styled.ul`
   color: #666;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -56,7 +57,7 @@ interface ExperienceEntry {
   title: string;
   location: string;
   period: string;
-  description: string;
+  description: string[];
 }
 
 interface ExperienceProps {
@@ -89,7 +90,18 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
             <JobTitle>{entry.title}</JobTitle>
             {/* TODO: make these bullet points? */}
             {selectedItem === index && (
-              <Description>{entry.description}</Description>
+              <Description>
+                {entry.description.map((point, idx) => (
+                  <li
+                    key={idx}
+                    style={{
+                      margin: '0.5rem 1rem',
+                    }}
+                  >
+                    {point}
+                  </li>
+                ))}
+              </Description>
             )}
             <LocationAndDate>
               <Location>{entry.location}</Location>

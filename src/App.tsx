@@ -7,18 +7,22 @@ import Experience from './components/Experience';
 import { ThemeProvider } from './components/ThemeProvider';
 import ThemeToggle from './components/ThemeToggle';
 
-// TODO: fix padding and margins
 const projects = [
   {
-    title: "HABO Framework for Hyperparameter Optimization - Research Paper",
+    title: "Research Paper: HABO Framework for Hyperparameter Optimization",
     description: "A research paper in the field of reinforcment learning. Supervised by Dr. Tom Cesari at the University of Ottawa, EECS department.",
     link: "https://arxiv.org/abs/2503.10282"
   },
   {
+    title: "Custom Interpreter",
+    description: "A lightweight interpreter from scratch for a custom programming language, supporting basic arithmetic operations, control flow, and data types.",
+    link: "https://github.com/notsaad/interpreter"
+  },
+  {
     title: "Sustain App",
-    description: "An e-commerce platform with modern design patterns and seamless user experience.",
-    link: "https://github.com/notsaad/project-two"
-  }
+    description: "React Native mobile app for the uOttaHack 6 Hackathon calculating clothing items’ environmental impact via quantitative analysis based on a clothing tag’s information",
+    link: "https://github.com/notsaad/uOttaHack2024"
+  },
 ];
 
 const contactLinks = [
@@ -52,28 +56,28 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
     period: "January 2025 - August 2025",
-    description: 'test',
+    description: ['test 1', 'test 2', 'test 3'],
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
-    description: 'test',
+    description: ['test 1', 'test 2', 'test 3'],
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "September 2023 - December 2023",
-    description: 'test',
+    description: ['test 1', 'test 2', 'test 3'],
   },
   {
     company: "Diffraction Limited",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2023 - August 2023",
-    description: 'test',
+    description: ['test 1', 'test 2', 'test 3'],
   }
 
 ];
