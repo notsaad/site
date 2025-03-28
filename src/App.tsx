@@ -56,33 +56,47 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
     period: "January 2025 - August 2025",
-    description: ['test 1', 'test 2', 'test 3'],
+    description: [
+      'Worked full-stack on Tesla’s electrical distribution management system servicing hundreds of engineers worldwide using Go, React TypeScript, GraphQL and Kubernetes.',
+      'Led development of a new schematic tool using Slate.js to streamline the production of electrical drawings for 10+ engineering teams.',
+    ],
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
-    description: ['test 1', 'test 2', 'test 3'],
+    description: [
+      'Developed Python automation scripts to eliminate redundant In-Service Software Upgrade (ISSU) functions and structures in a large legacy C codebase, reducing manual effort by approximately 92%.',
+      'Streamlined codebase maintenance by automating the identification and removal of obsolete ISSU components, processing over 100,000 lines of code.',
+      'Optimized test suite performance by removing redundant ISSU functions and structures, reducing overall test execution time by 3% and enabling more frequent integration testing cycles and CI/CD Pipelines.'
+    ],
   },
   {
     company: "Nokia",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "September 2023 - December 2023",
-    description: ['test 1', 'test 2', 'test 3'],
+    description: [
+      'Built and maintained an internal order tracking system using Vue.js, MySQL, Node.js, Express.',
+      'Implemented efficient API calls using Axios to interact with a MySQL database hosted on MariaDB, optimizing query performance and reducing backend response time by 30%',
+      'Authored Bash scripts that automatically configured accurate IP/TCP protocols for newly updated beds.'
+    ],
   },
   {
     company: "Diffraction Limited",
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2023 - August 2023",
-    description: ['test 1', 'test 2', 'test 3'],
+    description: [
+      'Designed and implemented a robust C++ enumeration system to efficiently translate hex codes into corresponding error messages, reducing error interpretation time by 90%.',
+      'Optimized SQL database schema for parsed log data, resulting in a 50% improvement in query response times.',
+      'Created a RESTful API using Node.js to serve parsed error data to a Vue.js frontend, enabling real-time error monitoring and analysis.'
+    ],
   }
 
 ];
 
-// TODO: add an education and experience section
 function App() {
   return (
     <ThemeProvider>

@@ -18,6 +18,7 @@ const ExperienceItem = styled.div`
   &:hover {
     border-color: #cccccc;
     cursor: pointer;
+    transform: translateY(-2px);
   }
 `;
 
@@ -29,7 +30,7 @@ const CompanyName = styled.h3`
 const JobTitle = styled.h4`
   font-size: 1.1rem;
   line-height: 0;
-  color: #666;
+  color: #999;
   margin-bottom: 0rem;
 `;
 
@@ -88,7 +89,6 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
           >
             <CompanyName>{entry.company}</CompanyName>
             <JobTitle>{entry.title}</JobTitle>
-            {/* TODO: make these bullet points? */}
             {selectedItem === index && (
               <Description>
                 {entry.description.map((point, idx) => (
