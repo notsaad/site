@@ -6,6 +6,7 @@ import Education from './components/Education';
 import Experience from './components/Experience';
 import { ThemeProvider } from './components/ThemeProvider';
 import ThemeToggle from './components/ThemeToggle';
+import Background from './components/Background';
 
 const projects = [
   {
@@ -100,6 +101,7 @@ const experiences = [
 function App() {
   return (
     <ThemeProvider>
+      <Background />
       <Layout>
         <ThemeToggle />
         <Header

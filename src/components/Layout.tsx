@@ -10,6 +10,7 @@ const Container = styled.div<{ isDark: boolean }>`
   max-width: 80ch;
   margin: 0 auto;
   padding: ${theme.spacing.grid};
+  background-color: ${props => props.isDark ? `#111` : `#fff`};
   
   * {
     box-sizing: border-box;
