@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Header from './components/Header';
 import Projects from './components/Projects';
@@ -98,22 +99,56 @@ const experiences = [
 
 ];
 
+function HomePage() {
+  return (
+    <Layout>
+      <ThemeToggle />
+      <Header
+        name="SAAD MAZHAR"
+        email="saadmazhar@me.com"
+        bio="CS at uOttawa, Graduating December 2025. Looking for New Grad SWE/ML Roles."
+      />
+      <Education education={education} />
+      <Experience experiences={experiences} />
+      <Projects projects={projects} />
+      <Contact links={contactLinks} />
+    </Layout>
+  );
+}
+
+function SaadGPTPage() {
+  return (
+    <Layout>
+      <ThemeToggle />
+      <div>
+        <h1>SAADGPT</h1>
+        <p>Coming soon...</p>
+      </div>
+    </Layout>
+  );
+}
+
+function ResumePage() {
+  return (
+    <Layout>
+      <ThemeToggle />
+      <div>
+        <h1>Resume</h1>
+        <p>My resume will be available here soon.</p>
+      </div>
+    </Layout>
+  );
+}
+
 function App() {
   return (
     <ThemeProvider>
       <Background />
-      <Layout>
-        <ThemeToggle />
-        <Header
-          name="SAAD MAZHAR"
-          email="saadmazhar@me.com"
-          bio="CS at uOttawa, Graduating December 2025. Looking for New Grad SWE/ML Roles."
-        />
-        <Education education={education} />
-        <Experience experiences={experiences} />
-        <Projects projects={projects} />
-        <Contact links={contactLinks} />
-      </Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/saadgpt" element={<SaadGPTPage />} />
+        <Route path="/resume" element={<ResumePage />} />
+      </Routes>
     </ThemeProvider>
   );
 }

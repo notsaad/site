@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { useTheme } from './ThemeProvider';
 import styled from 'styled-components';
 import { theme } from '../styles/theme';
@@ -20,13 +21,47 @@ const ToggleBox = styled.div<{ isDark?: boolean }>`
   padding: ${theme.spacing.unit};
   border: ${theme.borders.style};
   border-color: ${props => props.isDark ? theme.colors.dark.border : theme.colors.light.border};
+  background-color: ${props => props.isDark ? '#111' : '#fff'};
   
   &:hover {
     background-color: ${props => props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
   }
 `;
 
-const ThemeToggle: React.FC = () => {
+const StyledNavLink = styled(NavLink)<{ $isDark?: boolean }>`
+  display: inline-block;
+  padding: ${theme.spacing.unit};
+  border: ${theme.borders.style};
+  border-color: ${props => props.$isDark ? theme.colors.dark.border : theme.colors.light.border};
+  background-color: ${props => props.$isDark ? '#111' : '#fff'};
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    background-color: ${props => props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+  }
+  
+  &.active {
+    font-weight: bold;
+    background-color: ${props => props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+  }
+`;
+
+interface RoutingBoxProps {
+  isDark?: boolean;
+  text: string;
+  route: string;
+}
+
+const RoutingBox: React.FC<RoutingBoxProps> = ({isDark, text, route}) => {
+  return (
+    <StyledNavLink to={route} $isDark={isDark}>
+      [ {text} ]
+    </StyledNavLink>
+  );
+};
+
+export const ThemeToggle: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
@@ -34,15 +69,10 @@ const ThemeToggle: React.FC = () => {
       <ToggleBox isDark={isDarkMode} onClick={toggleTheme}>
         [ {isDarkMode ? 'LIGHT' : 'DARK'} ]
       </ToggleBox>
-      {/* TODO: make the click lead to the saadgpt route of the site */}
-      <ToggleBox isDark={isDarkMode}>
-        [ SAADGPT ]
-      </ToggleBox>
-      <ToggleBox isDark={isDarkMode}>
-        [ RESUME ]
-      </ToggleBox>
+      <RoutingBox isDark={isDarkMode} text="SAADGPT" route="/saadgpt" />
+      <RoutingBox isDark={isDarkMode} text="RESUME" route="/resume" />
     </ToggleContainer>
   );
 };
 
-export default ThemeToggle; 
+export default ThemeToggle;
