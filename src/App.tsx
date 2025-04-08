@@ -47,7 +47,7 @@ const contactLinks = [
 const education = [
   {
     institution: "University of Ottawa",
-    degree: "Honours Bachelors in Computer Science",
+    degree: "Honors BS in Computer Science, Minor in Philosophy",
     period: "September 2021 - December 2025"
   }
 ];
