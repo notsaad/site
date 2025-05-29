@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   height: 100vh;
-  background-color: #343541;
+  background-color: #212121;
 `;
 
 export const Sidebar = styled.div`
@@ -39,7 +39,7 @@ export const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  //overflow: hidden;
 `;
 
 export const MessagesContainer = styled.div`
@@ -49,7 +49,7 @@ export const MessagesContainer = styled.div`
 `;
 
 export const Message = styled.div<{ isUser: boolean }>`
-  background-color: ${props => (props.isUser ? '#444654' : '#343541')};
+  background-color: ${(props) => (props.isUser ? "#444654" : "#343541")};
   color: white;
   padding: 20px 0;
   display: flex;
@@ -69,7 +69,7 @@ export const Avatar = styled.div<{ isUser: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  background-color: ${props => (props.isUser ? '#19c37d' : '#5436DA')};
+  background-color: ${(props) => (props.isUser ? "#19c37d" : "#5436DA")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +85,6 @@ export const TextContent = styled.div`
 
 export const InputContainer = styled.div`
   padding: 20px;
-  background-color: #40414f;
   display: flex;
   justify-content: center;
 `;
@@ -101,7 +100,7 @@ export const TextArea = styled.textarea`
   padding: 12px 45px 12px 15px;
   border-radius: 5px;
   border: 1px solid #565869;
-  background-color: #40414f;
+  background-color: #303030;
   color: white;
   font-size: 16px;
   resize: none;

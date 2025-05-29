@@ -47,7 +47,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessin
           value={message}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="Message SaadGPT..."
+          placeholder="What can SaadGPT help with?"
           rows={1}
           disabled={isProcessing}
         />
