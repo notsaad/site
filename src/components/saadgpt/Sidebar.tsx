@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar as SidebarStyled, NewChatButton, SidebarHeader } from './styles';
+import { Sidebar as SidebarStyled, NewChatButton, SidebarHeader } from './styled';
 
 interface Conversation {
   id: string;

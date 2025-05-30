@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message as MessageStyled, MessageContent, Avatar, TextContent } from './styles';
+import { Message as MessageStyled, MessageContent, Avatar, TextContent } from './styled';
 
 interface MessageProps {
   content: string;

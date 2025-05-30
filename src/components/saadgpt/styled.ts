@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Sidebar = styled.div`
   width: 260px;
-  background-color: #202123;
+  background-color: #171717;
   color: white;
   padding: 10px;
   display: flex;
@@ -91,16 +91,19 @@ export const InputContainer = styled.div`
 
 export const InputWrapper = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 60%;
+  display: flex;
+  align-items: center;
   position: relative;
 `;
 
 export const TextArea = styled.textarea`
   width: 100%;
+  height: 4em;
   padding: 12px 45px 12px 15px;
-  border-radius: 5px;
-  border: 1px solid #565869;
   background-color: #303030;
+  border: none;
+  border-radius: 1rem;
   color: white;
   font-size: 16px;
   resize: none;
@@ -109,28 +112,38 @@ export const TextArea = styled.textarea`
   outline: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-  &:focus {
-    border-color: #10a37f;
+  &::placeholder {
+    color: white;
   }
 `;
 
 export const SendButton = styled.button`
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  background: transparent;
-  border: none;
-  color: #8e8ea0;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #676767;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: #343541;
-    color: white;
+    background-color: #555;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;
 
