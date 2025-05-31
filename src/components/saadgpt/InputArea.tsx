@@ -9,7 +9,7 @@ interface InputAreaProps {
 
 export const InputArea: React.FC<InputAreaProps> = () => {
   return (
-    <InputContainer style={{ border: "1px solid red" }}>
+    <InputContainer style={{ width: "100%" }}>
       <InputWrapper>
         <TextArea
           placeholder="Ask anything about Saad..."

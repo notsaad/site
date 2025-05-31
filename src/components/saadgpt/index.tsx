@@ -137,10 +137,20 @@ export const SaadGPT: React.FC = () => {
 
         <MainContent>
         {currentConversation?.messages.length === 0 ? (
-            <InputArea
-              onSendMessage={handleNewMessage}
-              isProcessing={isProcessing}
-            />
+            <div
+                style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <InputArea
+                onSendMessage={handleNewMessage}
+                isProcessing={isProcessing}
+                />
+            </div>
         ) : (
           <MessagesContainer>
             {currentConversation?.messages.map((message) => (
