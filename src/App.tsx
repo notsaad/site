@@ -111,7 +111,7 @@ const HomePage = () => {
       <Header
         name="SAAD MAZHAR"
         email="saadmazhar@me.com"
-        bio="CS at uOttawa, Graduating December 2025. Looking for New Grad SWE/ML Roles."
+        bio="CS at uOttawa, Graduating April 2026. Looking for New Grad SWE/ML Roles."
       />
       <Education education={education} />
       <Experience experiences={experiences} />

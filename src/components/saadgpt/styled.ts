@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   height: 100vh;
   background-color: #212121;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
 `;
 
 export const Sidebar = styled.div`
@@ -87,6 +89,7 @@ export const InputContainer = styled.div`
   padding: 20px;
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 export const InputWrapper = styled.div`
@@ -106,6 +109,8 @@ export const TextArea = styled.textarea`
   border-radius: 1rem;
   color: white;
   font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
   resize: none;
   min-height: 50px;
   max-height: 200px;
@@ -118,8 +123,8 @@ export const TextArea = styled.textarea`
 `;
 
 export const SendButton = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: #676767;
   color: white;

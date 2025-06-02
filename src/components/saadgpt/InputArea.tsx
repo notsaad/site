@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { InputContainer, InputWrapper, TextArea } from "./styled";
 import { InputButton } from "./InputButton";
 
@@ -8,14 +8,17 @@ interface InputAreaProps {
 }
 
 export const InputArea: React.FC<InputAreaProps> = () => {
+  const [inputValue, setInputValue] = useState("");
+
   return (
-    <InputContainer style={{ width: "100%" }}>
+    <InputContainer>
       <InputWrapper>
         <TextArea
           placeholder="Ask anything about Saad..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
-        {/* have the button turn white when there is text in the input area */}
-        <InputButton />
+        <InputButton backgroundColour={inputValue.trim() ? "#FFFFFF" : "#676767"} style={{paddingRight: '100em'}} />
       </InputWrapper>
     </InputContainer>
   );
