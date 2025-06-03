@@ -159,3 +159,16 @@ export const SidebarHeader = styled.div`
   font-weight: bold;
   font-size: 14px;
 `;
+
+export const TopSidebarButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 10px;
+
+  &: hover {
+    background-color: #2b2c2f;
+    cursor: pointer;
+  }
+`;
