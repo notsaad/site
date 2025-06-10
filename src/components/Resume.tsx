@@ -1,8 +1,11 @@
 import Layout from "./Layout";
 import { StyledLink } from "./styled";
 import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "./ThemeProvider";
 
 const Resume = () => {
+  const { isDarkMode } = useTheme();
+  
   return (
     <Layout>
       <ThemeToggle />
@@ -16,7 +19,7 @@ const Resume = () => {
           minHeight: "100vh",
         }}
       >
-        <h1 style={{ marginBottom: "20px", textAlign: "center" }}>Resume</h1>
+        <h1 style={{ textAlign: "center", fontSize: "2em", padding: "0.375em 5em" }}>Resume</h1>
         <div
           style={{
             width: "100%",
@@ -36,7 +39,7 @@ const Resume = () => {
           />
         </div>
         <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <StyledLink href="/resume.pdf" download="Saad_Mazhar_Resume.pdf">
+          <StyledLink href="/resume.pdf" download="Saad_Mazhar_Resume.pdf" $isDarkMode={isDarkMode}>
             Download Resume
           </StyledLink>
         </div>
