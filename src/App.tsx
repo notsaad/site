@@ -8,8 +8,8 @@ import Experience from "./components/Experience";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ThemeToggle from "./components/ThemeToggle";
 import Background from "./components/Background";
-import {SaadGPT} from "./components/saadgpt";
-
+import { SaadGPT } from "./components/saadgpt";
+import Resume from "./components/Resume";
 
 const projects = [
   {
@@ -121,18 +121,6 @@ const HomePage = () => {
   );
 };
 
-const ResumePage = () => {
-  return (
-    <Layout>
-      <ThemeToggle />
-      <div>
-        <h1>Resume</h1>
-        <p>My resume will be available here soon.</p>
-      </div>
-    </Layout>
-  );
-};
-
 const App = () => {
   return (
     <ThemeProvider>
@@ -140,7 +128,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/saadgpt" element={<SaadGPT />} />
-        <Route path="/resume" element={<ResumePage />} />
+        <Route path="/resume" element={<Resume />} />
       </Routes>
     </ThemeProvider>
   );
