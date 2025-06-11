@@ -1,30 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Sidebar as SidebarStyled, TopSidebarButton, SidebarHeader } from './styled';
 
-interface Conversation {
-  id: string;
-  title: string;
-  url?: string;
-  dateGroup?: string;
-}
-
-interface SidebarProps {
-  onNewChat: () => void;
-  conversations: Conversation[];
-  onSelectConversation: (id: string) => void;
-  activeConversationId: string | null;
-}
-
-export const Sidebar: React.FC<SidebarProps> = ({ onNewChat, conversations }) => {
-  // group conversations by dateGroup field
-  const grouped = useMemo(() => {
-    return conversations.reduce((acc: Record<string, Conversation[]>, conv) => {
-      const group = conv.dateGroup || 'Earlier';
-      if (!acc[group]) acc[group] = [];
-      acc[group].push(conv);
-      return acc;
-    }, {} as Record<string, Conversation[]>);
-  }, [conversations]);
+export const Sidebar: React.FC = () => {
+  const sidebarItems = [
+      { id: '1', title: 'Chat with Saad', url: '/chat/1', displayDate: "Feb 2025" },
+      { id: '2', title: 'Project Discussion', url: '/chat/2', displayDate: "Feb 2025" },
+      { id: '3', title: 'Meeting Notes', url: '/chat/3', displayDate: "Feb 2025" },
+      { id: '4', title: 'Weekly Review', url: '/chat/4', displayDate: "Feb 2025" },
+      { id: '5', title: 'Feedback Session', url: '/chat/5', displayDate: "Feb 2025" },
+  ];
 
   return (
     <SidebarStyled>
@@ -40,14 +24,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNewChat, conversations }) =>
       </TopSidebarButton>
 
       <div style={{ marginTop: '20px', overflowY: 'auto', flex: 1 }}>
-        {Object.entries(grouped).map(([group, items]) => (
-          <div key={group}>
-            <SidebarHeader>{group}</SidebarHeader>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              {items.map(conv => (
+        {sidebarItems.map(item => (
+          <div key={item.id}>
+            <SidebarHeader>{item.displayDate}</SidebarHeader>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                 <a
-                  key={conv.id}
-                  href={conv.url || '#'}
+                  key={item.id}
+                  href={item.url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -68,9 +51,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNewChat, conversations }) =>
                   onMouseOver={e => e.currentTarget.style.backgroundColor = '#2b2c2f'}
                   onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  {conv.title}
+                  {item.title}
                 </a>
-              ))}
             </div>
           </div>
         ))}
