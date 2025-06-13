@@ -3,11 +3,10 @@ import { Sidebar as SidebarStyled, TopSidebarButton, SidebarHeader } from './sty
 
 export const Sidebar: React.FC = () => {
   const sidebarItems = [
-      { id: '1', title: 'Chat with Saad', url: '/chat/1', displayDate: "Feb 2025" },
-      { id: '2', title: 'Project Discussion', url: '/chat/2', displayDate: "Feb 2025" },
-      { id: '3', title: 'Meeting Notes', url: '/chat/3', displayDate: "Feb 2025" },
-      { id: '4', title: 'Weekly Review', url: '/chat/4', displayDate: "Feb 2025" },
-      { id: '5', title: 'Feedback Session', url: '/chat/5', displayDate: "Feb 2025" },
+      { id: '1', title: 'Compiler in C++', url: 'https://github.com/notsaad/compiler', displayDate: "July 2025" },
+      { id: '2', title: 'This Site!', url: '/', displayDate: "June 2025" },
+      { id: '3', title: 'Interpreter in Go', url: 'https://github.com/notsaad/interpreter', displayDate: "October 2024" },
+      { id: '4', title: 'Interpreter in Go', url: 'https://github.com/notsaad/uOttaHack2024', displayDate: "Feb 2024" },
   ];
 
   return (
@@ -20,7 +19,7 @@ export const Sidebar: React.FC = () => {
       <TopSidebarButton
         onClick={e => console.log('Project Library Clicked', e)}
       >
-        Project Library
+        GitHub
       </TopSidebarButton>
 
       <div style={{ marginTop: '20px', overflowY: 'auto', flex: 1 }}>
@@ -30,7 +29,7 @@ export const Sidebar: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                 <a
                   key={item.id}
-                  href={item.url || '#'}
+                  href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
