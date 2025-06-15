@@ -3,10 +3,10 @@ import { Sidebar as SidebarStyled, TopSidebarButton, SidebarHeader } from './sty
 
 export const Sidebar: React.FC = () => {
   const sidebarItems = [
-      { id: '1', title: 'Compiler in C++', url: 'https://github.com/notsaad/compiler', displayDate: "July 2025" },
-      { id: '2', title: 'This Site!', url: '/', displayDate: "June 2025" },
-      { id: '3', title: 'Interpreter in Go', url: 'https://github.com/notsaad/interpreter', displayDate: "October 2024" },
-      { id: '4', title: 'Interpreter in Go', url: 'https://github.com/notsaad/uOttaHack2024', displayDate: "Feb 2024" },
+      { id: '1', title: 'Compiler in C++', technologies: 'C++', url: 'https://github.com/notsaad/compiler', displayDate: "July 2025" },
+      { id: '2', title: 'This Site!', technologies: 'Typescript, React', url: '/', displayDate: "June 2025" },
+      { id: '3', title: 'Interpreter in Go', technologies: 'Go',  url: 'https://github.com/notsaad/interpreter', displayDate: "October 2024" },
+      { id: '4', title: 'Sustain App', technologies: 'Javascript, Python, Flask', url: 'https://github.com/notsaad/uOttaHack2024', displayDate: "Feb 2024" },
   ];
 
   return (
@@ -51,6 +51,8 @@ export const Sidebar: React.FC = () => {
                   onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   {item.title}
+                  <br />
+                  <span style={{ fontSize: '12px', color: '#8e8ea0' }}>{item.technologies}</span>
                 </a>
             </div>
           </div>
