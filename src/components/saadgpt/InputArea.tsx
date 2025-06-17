@@ -32,9 +32,9 @@ export const InputArea: React.FC<InputAreaProps> = () => {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyPress}
         />
-        <InputButton 
-          backgroundColour={inputValue.trim() ? "#FFFFFF" : "#676767"} 
-          style={{paddingRight: '100em'}}
+        <InputButton
+          backgroundColour={inputValue.trim() ? "#FFFFFF" : "#676767"}
+          style={{ paddingRight: "100em" }}
           onClick={handleSend}
         />
       </InputWrapper>
