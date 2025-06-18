@@ -7,12 +7,12 @@ interface InputAreaProps {
   isProcessing: boolean;
 }
 
-export const InputArea: React.FC<InputAreaProps> = () => {
+export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessing }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSend = () => {
-    if (!inputValue.trim()) return;
-    console.log("inputValue", inputValue);
+    if (!inputValue.trim() || isProcessing) return;
+    onSendMessage(inputValue);
     setInputValue("");
   };
 
@@ -31,11 +31,13 @@ export const InputArea: React.FC<InputAreaProps> = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyPress}
+          disabled={isProcessing}
         />
         <InputButton
-          backgroundColour={inputValue.trim() ? "#FFFFFF" : "#676767"}
+          backgroundColour={inputValue.trim() && !isProcessing ? "#FFFFFF" : "#676767"}
           style={{ paddingRight: "100em" }}
           onClick={handleSend}
+          disabled={isProcessing}
         />
       </InputWrapper>
     </InputContainer>

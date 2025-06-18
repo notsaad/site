@@ -44,12 +44,6 @@ export const MainContent = styled.div`
   //overflow: hidden;
 `;
 
-export const MessagesContainer = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-`;
-
 export const Message = styled.div<{ isUser: boolean }>`
   background-color: ${(props) => (props.isUser ? "#444654" : "#343541")};
   color: white;
@@ -65,18 +59,6 @@ export const MessageContent = styled.div`
   display: flex;
   gap: 20px;
   padding: 0 20px;
-`;
-
-export const Avatar = styled.div<{ isUser: boolean }>`
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  background-color: ${(props) => (props.isUser ? "#19c37d" : "#5436DA")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0;
 `;
 
 export const TextContent = styled.div`
@@ -119,6 +101,11 @@ export const TextArea = styled.textarea`
 
   &::placeholder {
     color: white;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
 

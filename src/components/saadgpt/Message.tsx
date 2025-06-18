@@ -1,18 +1,15 @@
 import React from 'react';
-import { Message as MessageStyled, MessageContent, Avatar, TextContent } from './styled';
+import { Message as MessageStyled, MessageContent, TextContent } from './styled';
 
-interface MessageProps {
+interface MessageProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
   isUser: boolean;
 }
 
-export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
+export const Message: React.FC<MessageProps> = ({ content, isUser, style }) => {
   return (
-    <MessageStyled isUser={isUser}>
+    <MessageStyled isUser={isUser} style={style}>
       <MessageContent>
-        <Avatar isUser={isUser}>
-          {isUser ? 'You' : 'SA'}
-        </Avatar>
         <TextContent>
           {content}
         </TextContent>
