@@ -49,45 +49,52 @@ export const SaadGPT: React.FC = () => {
     <Container>
       <Sidebar />
       <MainContent>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-            {messages.length === 0 ? (
-            <div
-              style={{
+        {messages.length === 0 ? (
+          <div
+            style={{
               flex: 1,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
               height: "100%",
-              color: "#888",
+              color: "#FFF",
+            }}
+          >
+            <h1 style={{ marginBottom: "2rem", fontWeight: 300}}>Where should we begin?</h1>
+            <InputArea
+              onSendMessage={handleNewMessage}
+              isProcessing={isProcessing}
+            />
+          </div>
+        ) : (
+          <div style={{ display: "contents" }}>
+            <div
+              style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                overflowY: "auto",
               }}
             >
-              <h2>Chat with SaadGPT</h2>
-              <p>Ask me anything about Saad!</p>
+              {messages.map((message) => (
+                <Message
+                  style={{
+                    alignSelf: message.isUser ? "flex-end" : "flex-start",
+                  }}
+                  key={message.id}
+                  content={message.content}
+                  isUser={message.isUser}
+                />
+              ))}
+              {isProcessing && <Message content="Typing..." isUser={false} />}
             </div>
-            ) : (
-            messages.map((message) => (
-              <Message
-              style={{
-                alignSelf: message.isUser ? 'flex-end' : 'flex-start'
-              }}
-              key={message.id}
-              content={message.content}
-              isUser={message.isUser}
-              />
-            ))
-            )}
-          {isProcessing && <Message content="Typing..." isUser={false} />}
-        </div>
-        <InputArea
-          onSendMessage={handleNewMessage}
-          isProcessing={isProcessing}
-        />
+            <InputArea
+              onSendMessage={handleNewMessage}
+              isProcessing={isProcessing}
+            />
+          </div>
+        )}
       </MainContent>
     </Container>
   );
