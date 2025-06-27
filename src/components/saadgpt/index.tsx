@@ -75,13 +75,13 @@ export const SaadGPT: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 overflowY: "auto",
+                padding: "20px 0",
+                // margin: '',
+                alignItems: 'space-evenly',
               }}
             >
               {messages.map((message) => (
                 <Message
-                  style={{
-                    alignSelf: message.isUser ? "flex-end" : "flex-start",
-                  }}
                   key={message.id}
                   content={message.content}
                   isUser={message.isUser}

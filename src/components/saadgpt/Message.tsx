@@ -9,7 +9,7 @@ interface MessageProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Message: React.FC<MessageProps> = ({ content, isUser, style }) => {
   return (
     <MessageStyled isUser={isUser} style={style}>
-      <MessageContent>
+      <MessageContent isUser={isUser}>
         <TextContent>
           {content}
         </TextContent>

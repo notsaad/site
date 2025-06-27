@@ -45,26 +45,28 @@ export const MainContent = styled.div`
 `;
 
 export const Message = styled.div<{ isUser: boolean }>`
-  background-color: ${(props) => (props.isUser ? "#444654" : "#343541")};
-  color: white;
-  padding: 20px 0;
   display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #5e5e5e;
+  justify-content: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
+  margin-left: ${(props) => (props.isUser ? "0" : "6em")};
+  margin-right: ${(props) => (props.isUser ? "6em" : "0")};
+  padding: 8px 20px;
+  margin-bottom: 8px;
 `;
 
-export const MessageContent = styled.div`
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  gap: 20px;
-  padding: 0 20px;
+export const MessageContent = styled.div<{ isUser: boolean }>`
+  max-width: 70%;
+  min-width: 100px;
+  background-color: ${(props) => (props.isUser ? "#007AFF" : "#212121")};
+  color: white;
+  border-radius: 18px;
+  padding: 12px 16px;
+  position: relative;
+  word-wrap: break-word;
 `;
 
 export const TextContent = styled.div`
-  flex: 1;
-  line-height: 1.5;
-  padding-top: 5px;
+  line-height: 1.4;
+  font-size: 14px;
 `;
 
 export const InputContainer = styled.div`
