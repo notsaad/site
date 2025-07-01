@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { InputContainer, InputWrapper, TextArea } from "./styled";
 import { InputButton } from "./InputButton";
+import { callAPI } from "./api";
 
 interface InputAreaProps {
   onSendMessage: (message: string) => void;
@@ -10,8 +11,17 @@ interface InputAreaProps {
 export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessing }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleSend = () => {
-    if (!inputValue.trim() || isProcessing) return;
+  const handleSend = async () => {
+    if (!inputValue.trim() || isProcessing) {
+      return;
+    }
+    try {
+      const response = await callAPI();
+      console.log("API response:", response);
+    } catch (error) {
+      console.error("Error calling API:", error);
+      return;
+    }
     onSendMessage(inputValue);
     setInputValue("");
   };
