@@ -16,7 +16,7 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessin
       return;
     }
     try {
-      const response = await callAPI();
+      const response = await callAPI(inputValue);
       console.log("API response:", response);
     } catch (error) {
       console.error("Error calling API:", error);
