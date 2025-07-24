@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Container, MainContent } from "./styled";
 import { Sidebar } from "./Sidebar";
 import { InputArea } from "./InputArea";
 import { Message } from "./Message";
+import { callAPI } from "./api";
 
 interface MessageType {
-  id: string;
+  id: number;
   content: string;
   isUser: boolean;
   timestamp: Date;
@@ -14,6 +15,7 @@ interface MessageType {
 export const SaadGPT: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const messageIDRef = useRef(0);
 
   const handleNewMessage = async (message: string) => {
     if (!message.trim()) {
@@ -22,7 +24,7 @@ export const SaadGPT: React.FC = () => {
 
     // Add user message
     const userMessage: MessageType = {
-      id: Date.now().toString(),
+      id: ++messageIDRef.current,
       content: message,
       isUser: true,
       timestamp: new Date(),
@@ -31,18 +33,15 @@ export const SaadGPT: React.FC = () => {
     setMessages((prev) => [...prev, userMessage]);
     setIsProcessing(true);
 
-    // Simulate processing delay and add bot response
-    setTimeout(() => {
-      const botMessage: MessageType = {
-        id: (Date.now() + 1).toString(),
-        content: "test",
-        isUser: false,
-        timestamp: new Date(),
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
-      setIsProcessing(false);
-    }, 1000);
+    const apiResponse = await callAPI(userMessage.content);
+    const botMessage: MessageType = {
+      id: ++messageIDRef.current,
+      content: apiResponse,
+      isUser: false,
+      timestamp: new Date(),
+    }
+    setMessages((prev) => [...prev, botMessage]);
+    setIsProcessing(false);
   };
 
   return (

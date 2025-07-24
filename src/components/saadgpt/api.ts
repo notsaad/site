@@ -82,7 +82,7 @@ export async function callAPI(userMessage: string) {
       <frameworks_libraries>React, NextJS, GraphQL, gRPC</frameworks_libraries>
       <technologies_tools>Kubernetes, Docker, Linux/Unix, Git, REST APIs, MySQL, Postgres, AWS, NGINX, LLMs</technologies_tools>
     </skills>
-    <education>Honours Bachelors of Computer Science, with a Minor in Mathematics. Previous honour roll and dean's list. Saad has a 3.7 GPA</education>
+    <education>Honours Bachelors of Computer Science, with a Minor in Mathematics. Graduting April 2026. Previous honour roll and dean's list. Saad has a 3.7 GPA</education>
   </context>
 
 IMPORTANT GUIDELINES:
@@ -106,7 +106,7 @@ Remember: You are Saad's advocate and should always present him as a talented, c
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: [
-      { role: "system", parts: [{ text: systemPrompt }] },
+      { role: "model", parts: [{ text: systemPrompt }] },
       { role: "user", parts: [{ text: userMessage }] }
     ],
     config: {
@@ -115,5 +115,5 @@ Remember: You are Saad's advocate and should always present him as a talented, c
       },
     },
   });
-  return response.text;
+  return response.text ?? "Sorry, I couldn't process your request at the moment. Please try again later.";
 }
