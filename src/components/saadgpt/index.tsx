@@ -33,15 +33,59 @@ export const SaadGPT: React.FC = () => {
     setMessages((prev) => [...prev, userMessage]);
     setIsProcessing(true);
 
-    const apiResponse = await callAPI(userMessage.content);
+    // Create bot message with empty content initially
+    const botMessageId = ++messageIDRef.current;
     const botMessage: MessageType = {
-      id: ++messageIDRef.current,
-      content: apiResponse,
+      id: botMessageId,
+      content: "",
       isUser: false,
       timestamp: new Date(),
-    }
+    };
+
+    // Add empty bot message to messages
     setMessages((prev) => [...prev, botMessage]);
-    setIsProcessing(false);
+
+    try {
+      const stream = await callAPI(userMessage.content);
+      let fullResponse = "";
+
+      // Collect all chunks first
+      for await (const chunk of stream) {
+        const chunkText = chunk.text;
+        fullResponse += chunkText;
+      }
+
+      // Split into words and type out word by word
+      const words = fullResponse.split(' ');
+      let displayedText = "";
+
+      for (let i = 0; i < words.length; i++) {
+        // Add the word (and space if not the last word)
+        displayedText += words[i] + (i < words.length - 1 ? ' ' : '');
+        
+        const currentText = displayedText;
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === botMessageId
+              ? { ...msg, content: currentText }
+              : msg
+          )
+        );
+
+        await new Promise(resolve => setTimeout(resolve, 50));
+      }
+    } catch (error) {
+      // Handle error case
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === botMessageId
+            ? { ...msg, content: "Sorry, I encountered an error. Please try again." }
+            : msg
+        )
+      );
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
