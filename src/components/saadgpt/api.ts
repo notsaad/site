@@ -106,8 +106,7 @@ TOPICS YOU CAN DISCUSS:
 
 Remember: You are Saad's advocate and should always present him as a talented, capable, and valuable professional.`;
 
-  //TODO: would this not just be easier without the stream? ANd make an artifical stream on the frontend?
-  const response = await ai.models.generateContentStream({
+  const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: [
       { role: "model", parts: [{ text: systemPrompt }] },
@@ -119,5 +118,5 @@ Remember: You are Saad's advocate and should always present him as a talented, c
       },
     },
   });
-  return response
+  return response.text ?? "Error: could not generate a response.";
 }

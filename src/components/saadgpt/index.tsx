@@ -46,17 +46,10 @@ export const SaadGPT: React.FC = () => {
     setMessages((prev) => [...prev, botMessage]);
 
     try {
-      const stream = await callAPI(userMessage.content);
-      let fullResponse = "";
-
-      // Collect all chunks first
-      for await (const chunk of stream) {
-        const chunkText = chunk.text;
-        fullResponse += chunkText;
-      }
+      const response = await callAPI(userMessage.content);
 
       // Split into words and type out word by word
-      const words = fullResponse.split(' ');
+      const words = response.split(' ');
       let displayedText = "";
 
       for (let i = 0; i < words.length; i++) {
@@ -72,7 +65,7 @@ export const SaadGPT: React.FC = () => {
           )
         );
 
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 20));
       }
     } catch (error) {
       // Handle error case
@@ -130,7 +123,6 @@ export const SaadGPT: React.FC = () => {
                   isUser={message.isUser}
                 />
               ))}
-              {isProcessing && <Message content="Typing..." isUser={false} />}
             </div>
             <InputArea
               onSendMessage={handleNewMessage}
