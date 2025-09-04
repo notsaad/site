@@ -15,7 +15,7 @@ const projects = [
   {
     title: "Research Paper: HABO Framework for Hyperparameter Optimization",
     description:
-      "A research paper in the field of reinforcment learning. Supervised by Dr. Tom Cesari at the University of Ottawa, EECS department.",
+      "A research paper in the field of reinforcement learning. Supervised by Dr. Tom Cesari at the University of Ottawa, EECS Department.",
     link: "https://arxiv.org/abs/2503.10282",
   },
   {
@@ -27,7 +27,7 @@ const projects = [
   {
     title: "Sustain App",
     description:
-      "React Native mobile app for the uOttaHack 6 Hackathon calculating clothing items’ environmental impact via quantitative analysis based on a clothing tag’s information",
+      "React Native mobile app for the uOttaHack 6 Hackathon that calculates clothing items' environmental impact through quantitative analysis based on clothing tag information.",
     link: "https://github.com/notsaad/uOttaHack2024",
   },
 ];
@@ -62,7 +62,18 @@ const experiences = [
     company: "Tesla",
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
-    period: "January 2025 - August 2025",
+    period: "May 2025 - August 2025",
+    description: [
+      "Deployed an internal AI Agent with multi-tool calling capabilities.",
+      "Engineered AI LLM integrations and tooling into existing internal workflows.",
+      "Presented project at Department All Hands (800+ engineers) and received maximum possible performance review.",
+    ],
+  },
+  {
+    company: "Tesla",
+    title: "Software Engineer Intern",
+    location: "Palo Alto, California",
+    period: "January 2025 - April 2025",
     description: [
       "Worked full-stack on Tesla’s electrical distribution management system servicing 10,000+ engineers worldwide using Go, React TypeScript, GraphQL and Kubernetes.",
       "Leveraged goroutines and channels to implement concurrent data processing pipelines, significantly improving the throughput and responsiveness of backend services.",
@@ -75,9 +86,8 @@ const experiences = [
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
     description: [
-      "Developed Python automation scripts to eliminate redundant In-Service Software Upgrade (ISSU) functions and structures in a large legacy C codebase, reducing manual effort by approximately 92%.",
-      "Streamlined codebase maintenance by automating the identification and removal of obsolete ISSU components, processing over 100,000 lines of code.",
-      "Optimized test suite performance by removing redundant ISSU functions and structures, reducing overall test execution time by 3% and enabling more frequent integration testing cycles and CI/CD Pipelines.",
+      "Created Go based CLI tools for network configuration management that automated previously manual processes.",
+      "Helped maintain and improve network testbed infrastructure.",
     ],
   },
   {
@@ -86,9 +96,8 @@ const experiences = [
     location: "Ottawa, Ontario",
     period: "September 2023 - December 2023",
     description: [
-      "Built and maintained an internal order tracking system using Vue.js, MySQL, Node.js, Express.",
-      "Implemented efficient API calls using Axios to interact with a MySQL database hosted on MariaDB, optimizing query performance and reducing backend response time by 30%",
-      "Authored Bash scripts that automatically configured accurate IP/TCP protocols for newly updated beds.",
+      "Developed Go automation scripts to eliminate redundant In-Service-Software-Upgrade (ISSU) functions and structures.",
+      "Streamlined codebase maintenance by automating the identification and removal of obsolete code structures.",
     ],
   },
   {
@@ -111,7 +120,7 @@ const HomePage = () => {
       <Header
         name="SAAD MAZHAR"
         email="saadmazhar@me.com"
-        bio="CS at uOttawa, Graduating April 2026. Looking for New Grad SWE/ML Roles."
+        bio="CS at uOttawa, graduating in April 2026. Looking for New Grad Engineering Roles."
       />
       <Education education={education} />
       <Experience experiences={experiences} />
