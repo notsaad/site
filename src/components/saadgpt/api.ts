@@ -3,24 +3,23 @@ import { GoogleGenAI } from "@google/genai";
 export async function callAPI(userMessage: string) {
   const apiKey = process.env.REACT_APP_API_KEY;
   const ai = new GoogleGenAI({ apiKey });
-  
-  const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner.
 
+  const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner.
   <context>
     <experience>
       <job>
-        <title>AI Software Engineer Intern</title>
+        <title>Software Engineer Intern</title>
         <dates>May 2025 - August 2025</dates>
         <company>Tesla</company>
         <location>Palo Alto, California</location>
         <duties>
           <item>Engineered AI LLM integrations and tooling into existing internal workflows to increase developer productivity on repetitive tasks by 50%.</item>
           <item>Deployed an internal AI agent with multi-tool integration capabilities, enabling automated execution of complex workflows across enterprise systems using Go, gRPC, and Protobufs.</item>
-          <item>Collaborated with cross-functional AI teams on automated PR review and weekly repository newsletter generation tools.</item>
+          <item>Presented project at department all hands to 800+ engineers are got maximum possible performance review.</item>
         </duties>
       </job>
       <job>
-        <title>Fullstack Software Engineer Intern</title>
+        <title>Software Engineer Intern</title>
         <dates>January 2025 - April 2025</dates>
         <company>Tesla</company>
         <location>Palo Alto, California</location>
@@ -110,7 +109,7 @@ Remember: You are Saad's advocate and should always present him as a talented, c
     model: "gemini-2.5-flash",
     contents: [
       { role: "model", parts: [{ text: systemPrompt }] },
-      { role: "user", parts: [{ text: userMessage }] }
+      { role: "user", parts: [{ text: userMessage }] },
     ],
     config: {
       thinkingConfig: {
