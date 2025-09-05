@@ -34,10 +34,6 @@ const projects = [
 
 const contactLinks = [
   {
-    href: "mailto:saadmazhar@me.com",
-    text: "Email Me",
-  },
-  {
     href: "https://www.github.com/notsaad",
     text: "GitHub",
     external: true,

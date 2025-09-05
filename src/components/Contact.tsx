@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Section, SectionTitle } from './Section';
-import { Bio } from './Header';
+import React from "react";
+import styled from "styled-components";
+import { Section, SectionTitle } from "./Section";
+import { Bio } from "./Header";
 
 const ContactSection = styled.div`
   display: flex;
@@ -24,6 +24,23 @@ const Link = styled.a`
   }
 `;
 
+const Button = styled.button`
+  color: #000;
+  background: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+`;
+
 interface ContactLink {
   href: string;
   text: string;
@@ -35,6 +52,11 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ links }) => {
+  
+  const handleButtonClick = () => {
+    console.log("button pressed")
+  };
+  
   return (
     <Section>
       <SectionTitle>Get in Touch</SectionTitle>
@@ -42,13 +64,16 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
         I'm always interested in hearing about new projects and opportunities.
       </Bio>
       <ContactSection>
+        <Button onClick={handleButtonClick}>
+          Email Me!
+        </Button>
         {links.map((link, index) => (
           <Link
             key={index}
             href={link.href}
             {...(link.external && {
               target: "_blank",
-              rel: "noopener noreferrer"
+              rel: "noopener noreferrer",
             })}
           >
             {link.text}
@@ -59,4 +84,4 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
   );
 };
 
-export default Contact; 
+export default Contact;

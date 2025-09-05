@@ -32,6 +32,17 @@ const Container = styled.div<{ isDark: boolean }>`
       background-color: ${props => props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
     }
   }
+  
+  button {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: ${theme.borders.style};
+    border-color: ${props => props.isDark ? theme.colors.dark.border : theme.colors.light.border};
+    
+    &:hover {
+      background-color: ${props => props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+    }
+  }
 `;
 
 const Border = styled.div<{ isDark: boolean }>`
