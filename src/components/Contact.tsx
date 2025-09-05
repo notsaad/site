@@ -60,6 +60,15 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
 
   const handleMouseLeave = () => {
     setButtonText("Email Me!");
+    copyEmail();
+  };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("saadmazhar@me.com");
+    } catch (err) {
+      console.error("Failed to copy email to clipboard:", err);
+    }
   };
 
   return (
