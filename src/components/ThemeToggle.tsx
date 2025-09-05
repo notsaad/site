@@ -1,8 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useTheme } from './ThemeProvider';
-import styled from 'styled-components';
-import { theme } from '../styles/theme';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useTheme } from "./ThemeProvider";
+import styled from "styled-components";
+import { theme } from "../styles/theme";
 
 const ToggleContainer = styled.div`
   position: absolute;
@@ -16,15 +16,19 @@ const ToggleContainer = styled.div`
   gap: ${theme.spacing.unit};
 `;
 
-const ToggleBox = styled.div<{ isDark?: boolean }>`
+const ToggleBox = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isDark",
+})<{ isDark?: boolean }>`
   display: inline-block;
   padding: ${theme.spacing.unit};
   border: ${theme.borders.style};
-  border-color: ${props => props.isDark ? theme.colors.dark.border : theme.colors.light.border};
-  background-color: ${props => props.isDark ? '#111' : '#fff'};
-  
+  border-color: ${(props) =>
+    props.isDark ? theme.colors.dark.border : theme.colors.light.border};
+  background-color: ${(props) => (props.isDark ? "#111" : "#fff")};
+
   &:hover {
-    background-color: ${props => props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+    background-color: ${(props) =>
+      props.isDark ? theme.colors.dark.accent : theme.colors.light.accent};
   }
 `;
 
@@ -32,18 +36,21 @@ const StyledNavLink = styled(NavLink)<{ $isDark?: boolean }>`
   display: inline-block;
   padding: ${theme.spacing.unit};
   border: ${theme.borders.style};
-  border-color: ${props => props.$isDark ? theme.colors.dark.border : theme.colors.light.border};
-  background-color: ${props => props.$isDark ? '#111' : '#fff'};
+  border-color: ${(props) =>
+    props.$isDark ? theme.colors.dark.border : theme.colors.light.border};
+  background-color: ${(props) => (props.$isDark ? "#111" : "#fff")};
   text-decoration: none;
   color: inherit;
-  
+
   &:hover {
-    background-color: ${props => props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+    background-color: ${(props) =>
+      props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
   }
-  
+
   &.active {
     font-weight: bold;
-    background-color: ${props => props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
+    background-color: ${(props) =>
+      props.$isDark ? theme.colors.dark.accent : theme.colors.light.accent};
   }
 `;
 
@@ -53,7 +60,7 @@ interface RoutingBoxProps {
   route: string;
 }
 
-const RoutingBox: React.FC<RoutingBoxProps> = ({isDark, text, route}) => {
+const RoutingBox: React.FC<RoutingBoxProps> = ({ isDark, text, route }) => {
   return (
     <StyledNavLink to={route} $isDark={isDark}>
       [ {text} ]
@@ -67,7 +74,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <ToggleContainer>
       <ToggleBox isDark={isDarkMode} onClick={toggleTheme}>
-        [ {isDarkMode ? 'LIGHT' : 'DARK'} ]
+        [ {isDarkMode ? "LIGHT" : "DARK"} ]
       </ToggleBox>
       <RoutingBox isDark={isDarkMode} text="SAADGPT" route="/saadgpt" />
       <RoutingBox isDark={isDarkMode} text="RESUME" route="/resume" />

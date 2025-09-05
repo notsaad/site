@@ -10,7 +10,9 @@ const ContactSection = styled.div`
   position: relative;
 `;
 
-const PopupNotification = styled.div<{ show: boolean }>`
+const PopupNotification = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== "show",
+  })<{ show: boolean }>`
   position: absolute;
   top: -40px;
   left: 0;
@@ -88,7 +90,6 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
       await navigator.clipboard.writeText("saadmazhar@me.com");
       setShowPopup(true);
       setTimeout(() => setShowPopup(false), 2000);
-      console.log("Email copied to clipboard!");
     } catch (err) {
       console.error("Failed to copy email to clipboard:", err);
     }
@@ -104,10 +105,7 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
         <PopupNotification show={showPopup}>
           Copied to clipboard!
         </PopupNotification>
-        <Button
-          onClick={handleMouseClick}
-          onMouseLeave={handleMouseLeave}
-        >
+        <Button onClick={handleMouseClick} onMouseLeave={handleMouseLeave}>
           {buttonText}
         </Button>
         {links.map((link, index) => (
