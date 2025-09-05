@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Section, SectionTitle } from "./Section";
 import { Bio } from "./Header";
@@ -52,11 +52,16 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ links }) => {
-  
-  const handleButtonClick = () => {
-    console.log("button pressed")
+  const [buttonText, setButtonText] = useState<String>("Email Me!");
+
+  const handleMouseClick = () => {
+    setButtonText("saadmazhar@me.com");
   };
-  
+
+  const handleMouseLeave = () => {
+    setButtonText("Email Me!");
+  };
+
   return (
     <Section>
       <SectionTitle>Get in Touch</SectionTitle>
@@ -64,8 +69,8 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
         I'm always interested in hearing about new projects and opportunities.
       </Bio>
       <ContactSection>
-        <Button onClick={handleButtonClick}>
-          Email Me!
+        <Button onClick={handleMouseClick} onMouseLeave={handleMouseLeave}>
+          {buttonText}
         </Button>
         {links.map((link, index) => (
           <Link
