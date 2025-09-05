@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { InputContainer, InputWrapper, TextArea } from "./styled";
 import { InputButton } from "./InputButton";
-import { callAPI } from "./api";
 
 interface InputAreaProps {
   onSendMessage: (message: string) => void;
   isProcessing: boolean;
+  placeholderValue: string;
 }
 
-export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessing }) => {
+export const InputArea: React.FC<InputAreaProps> = ({
+  onSendMessage,
+  isProcessing,
+  placeholderValue,
+}) => {
   const [inputValue, setInputValue] = useState("");
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-focus when processing is complete
+  useEffect(() => {
+    if (!isProcessing && textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, [isProcessing]);
 
   const handleSend = async () => {
     if (!inputValue.trim() || isProcessing) {
-      return;
-    }
-    try {
-      const response = await callAPI(inputValue);
-      console.log("API response:", response);
-    } catch (error) {
-      console.error("Error calling API:", error);
       return;
     }
     onSendMessage(inputValue);
@@ -37,14 +42,17 @@ export const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isProcessin
     <InputContainer>
       <InputWrapper>
         <TextArea
-          placeholder="Ask anything about Saad..."
+          ref={textAreaRef}
+          placeholder={placeholderValue}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyPress}
           disabled={isProcessing}
         />
         <InputButton
-          backgroundColour={inputValue.trim() && !isProcessing ? "#FFFFFF" : "#676767"}
+          backgroundColour={
+            inputValue.trim() && !isProcessing ? "#FFFFFF" : "#676767"
+          }
           style={{ paddingRight: "100em" }}
           onClick={handleSend}
           disabled={isProcessing}

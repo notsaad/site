@@ -65,7 +65,7 @@ export const SaadGPT: React.FC = () => {
           )
         );
 
-        await new Promise(resolve => setTimeout(resolve, 20));
+        await new Promise(resolve => setTimeout(resolve, 10));
       }
     } catch (error) {
       // Handle error case
@@ -101,6 +101,7 @@ export const SaadGPT: React.FC = () => {
             <InputArea
               onSendMessage={handleNewMessage}
               isProcessing={isProcessing}
+              placeholderValue="Ask anything about Saad..."
             />
           </div>
         ) : (
@@ -127,6 +128,7 @@ export const SaadGPT: React.FC = () => {
             <InputArea
               onSendMessage={handleNewMessage}
               isProcessing={isProcessing}
+              placeholderValue=""
             />
           </div>
         )}
