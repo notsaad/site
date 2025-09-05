@@ -3,8 +3,6 @@ import { theme } from '../styles/theme';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.cdnfonts.com/css/jetbrains-mono-2');
-  
   * {
     margin: 0;
     padding: 0;
