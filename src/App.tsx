@@ -59,6 +59,7 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
     period: "May 2025 - August 2025",
+    tech: ["Go", "gRPC", "Protobufs"],
     description: [
       "Deployed an internal AI Agent with multi-tool calling capabilities.",
       "Engineered AI LLM integrations and tooling into existing internal workflows.",
@@ -70,6 +71,7 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Palo Alto, California",
     period: "January 2025 - April 2025",
+    tech: ["Typescript", "React", "Go"],
     description: [
       "Worked full-stack on Tesla’s electrical distribution management system servicing 10,000+ engineers worldwide using Go, React TypeScript, GraphQL and Kubernetes.",
       "Leveraged goroutines and channels to implement concurrent data processing pipelines, significantly improving the throughput and responsiveness of backend services.",
@@ -81,6 +83,7 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2024 - August 2024",
+    tech: ["Go"],
     description: [
       "Created Go based CLI tools for network configuration management that automated previously manual processes.",
       "Helped maintain and improve network testbed infrastructure.",
@@ -91,6 +94,7 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "September 2023 - December 2023",
+    tech: ["Go", "C"],
     description: [
       "Developed Go automation scripts to eliminate redundant In-Service-Software-Upgrade (ISSU) functions and structures.",
       "Streamlined codebase maintenance by automating the identification and removal of obsolete code structures.",
@@ -101,10 +105,11 @@ const experiences = [
     title: "Software Engineer Intern",
     location: "Ottawa, Ontario",
     period: "May 2023 - August 2023",
+    tech: ["C++", "Typescript", "React", "SQLite"],
     description: [
       "Designed and implemented a robust C++ enumeration system to efficiently translate hex codes into corresponding error messages, reducing error interpretation time by 90%.",
       "Optimized SQL database schema for parsed log data, resulting in a 50% improvement in query response times.",
-      "Created a RESTful API using Node.js to serve parsed error data to a Vue.js frontend, enabling real-time error monitoring and analysis.",
+      "Created a RESTful API using Typescript to serve parsed error data to a React frontend, enabling real-time error monitoring and analysis.",
     ],
   },
 ];

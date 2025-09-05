@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Section, SectionTitle } from './Section';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Section, SectionTitle } from "./Section";
 
 const ExperienceList = styled.div`
   display: flex;
@@ -14,12 +14,40 @@ const ExperienceItem = styled.div`
   border: 1px solid #444444;
   border-radius: 8px;
   transition: all 0.2s ease;
+  position: relative;
 
   &:hover {
     border-color: #cccccc;
     cursor: pointer;
     transform: translateY(-2px);
   }
+`;
+
+const ExperienceHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+`;
+
+const TitleSection = styled.div`
+  flex: 1;
+`;
+
+const TechStack = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: flex-start;
+  max-width: 40%;
+  margin-top: 1rem;
+`;
+
+const TechBadge = styled.span`
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
 `;
 
 const CompanyName = styled.h3`
@@ -31,7 +59,7 @@ const JobTitle = styled.h4`
   font-size: 1.1rem;
   line-height: 0;
   color: #999;
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
 `;
 
 const LocationAndDate = styled.div`
@@ -59,6 +87,7 @@ interface ExperienceEntry {
   location: string;
   period: string;
   description: string[];
+  tech: string[];
 }
 
 interface ExperienceProps {
@@ -66,36 +95,44 @@ interface ExperienceProps {
 }
 
 const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
-  const [selectedItem, setSelectedItem] = useState<number|null>(null);
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   return (
     <Section>
       <SectionTitle>Experience</SectionTitle>
       <ExperienceList>
         {experiences.map((entry, index) => (
-          <ExperienceItem 
+          <ExperienceItem
             key={index}
             onClick={(e) => {
-                if (e.defaultPrevented){
-                  return;
-                }
-                if (index === selectedItem){
-                  setSelectedItem(null);
-                } else {
-                  setSelectedItem(index);
-                }
+              if (e.defaultPrevented) {
+                return;
               }
-            }
+              if (index === selectedItem) {
+                setSelectedItem(null);
+              } else {
+                setSelectedItem(index);
+              }
+            }}
           >
-            <CompanyName>{entry.company}</CompanyName>
-            <JobTitle>{entry.title}</JobTitle>
+            <ExperienceHeader>
+              <TitleSection>
+                <CompanyName>{entry.company}</CompanyName>
+                <JobTitle>{entry.title}</JobTitle>
+              </TitleSection>
+              <TechStack>
+                {entry.tech.map((technology, idx) => (
+                  <TechBadge key={idx}>{technology}</TechBadge>
+                ))}
+              </TechStack>
+            </ExperienceHeader>
             {selectedItem === index && (
               <Description>
                 {entry.description.map((point, idx) => (
                   <li
                     key={idx}
                     style={{
-                      margin: '0.5rem 1rem',
+                      margin: "0.5rem 1rem",
                     }}
                   >
                     {point}
@@ -114,4 +151,4 @@ const Experience: React.FC<ExperienceProps> = ({ experiences }) => {
   );
 };
 
-export default Experience; 
+export default Experience;
