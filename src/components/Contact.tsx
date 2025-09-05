@@ -7,6 +7,24 @@ const ContactSection = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  position: relative;
+`;
+
+const PopupNotification = styled.div<{ show: boolean }>`
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  transform: translateY(${(props) => (props.show ? 0 : 10)}px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
 `;
 
 const Link = styled.a`
@@ -53,19 +71,24 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ links }) => {
   const [buttonText, setButtonText] = useState<String>("Email Me!");
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleMouseClick = () => {
     setButtonText("saadmazhar@me.com");
+    copyEmail();
   };
 
   const handleMouseLeave = () => {
     setButtonText("Email Me!");
-    copyEmail();
+    setShowPopup(false);
   };
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText("saadmazhar@me.com");
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 2000);
+      console.log("Email copied to clipboard!");
     } catch (err) {
       console.error("Failed to copy email to clipboard:", err);
     }
@@ -78,7 +101,13 @@ const Contact: React.FC<ContactProps> = ({ links }) => {
         I'm always interested in hearing about new projects and opportunities.
       </Bio>
       <ContactSection>
-        <Button onClick={handleMouseClick} onMouseLeave={handleMouseLeave}>
+        <PopupNotification show={showPopup}>
+          Copied to clipboard!
+        </PopupNotification>
+        <Button
+          onClick={handleMouseClick}
+          onMouseLeave={handleMouseLeave}
+        >
           {buttonText}
         </Button>
         {links.map((link, index) => (
