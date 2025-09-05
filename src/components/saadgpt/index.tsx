@@ -46,35 +46,28 @@ export const SaadGPT: React.FC = () => {
     setMessages((prev) => [...prev, botMessage]);
 
     try {
-      const response = await callAPI(userMessage.content);
+      const responseStream = callAPI(userMessage.content);
 
-      // Split into words and type out word by word
-      const words = response.split(' ');
-      let displayedText = "";
-
-      for (let i = 0; i < words.length; i++) {
-        // Add the word (and space if not the last word)
-        displayedText += words[i] + (i < words.length - 1 ? ' ' : '');
-        
-        const currentText = displayedText;
+      for await (const chunk of responseStream) {
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === botMessageId
-              ? { ...msg, content: currentText }
-              : msg
-          )
+              ? { ...msg, content: msg.content + chunk }
+              : msg,
+          ),
         );
-
-        await new Promise(resolve => setTimeout(resolve, 10));
       }
     } catch (error) {
       // Handle error case
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === botMessageId
-            ? { ...msg, content: "Sorry, I encountered an error. Please try again." }
-            : msg
-        )
+            ? {
+                ...msg,
+                content: "Sorry, I encountered an error. Please try again.",
+              }
+            : msg,
+        ),
       );
     } finally {
       setIsProcessing(false);
@@ -97,7 +90,9 @@ export const SaadGPT: React.FC = () => {
               color: "#FFF",
             }}
           >
-            <h1 style={{ marginBottom: "2rem", fontWeight: 300}}>Where should we begin?</h1>
+            <h1 style={{ marginBottom: "2rem", fontWeight: 300 }}>
+              Where should we begin?
+            </h1>
             <InputArea
               onSendMessage={handleNewMessage}
               isProcessing={isProcessing}
@@ -114,7 +109,7 @@ export const SaadGPT: React.FC = () => {
                 overflowY: "auto",
                 padding: "20px 0",
                 // margin: '',
-                alignItems: 'space-evenly',
+                alignItems: "space-evenly",
               }}
             >
               {messages.map((message) => (

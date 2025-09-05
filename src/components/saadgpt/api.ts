@@ -1,10 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 
-export async function callAPI(userMessage: string) {
+export async function* callAPI(userMessage: string) {
   const apiKey = process.env.REACT_APP_API_KEY;
   const ai = new GoogleGenAI({ apiKey });
 
-  const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner.
+  const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner, while keeping response concise.
   <context>
     <experience>
       <job>
@@ -105,17 +105,27 @@ TOPICS YOU CAN DISCUSS:
 
 Remember: You are Saad's advocate and should always present him as a talented, capable, and valuable professional.`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: [
-      { role: "model", parts: [{ text: systemPrompt }] },
-      { role: "user", parts: [{ text: userMessage }] },
-    ],
-    config: {
-      thinkingConfig: {
-        thinkingBudget: 0,
+  try {
+    const response = await ai.models.generateContentStream({
+      model: "gemini-2.5-flash",
+      contents: [
+        { role: "model", parts: [{ text: systemPrompt }] },
+        { role: "user", parts: [{ text: userMessage }] },
+      ],
+      config: {
+        thinkingConfig: {
+          thinkingBudget: 0,
+        },
       },
-    },
-  });
-  return response.text ?? "Error: could not generate a response.";
+    });
+
+    for await (const chunk of response) {
+      const text = chunk.text;
+      if (text) {
+        yield text;
+      }
+    }
+  } catch (error) {
+    yield "Error: could not generate a response.";
+  }
 }
