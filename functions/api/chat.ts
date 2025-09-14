@@ -16,7 +16,7 @@ export async function onRequestPost(context: {
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "*",
   };
 
   try {
@@ -71,6 +71,9 @@ export async function onRequestPost(context: {
       },
     );
 
+    const text = await apiResponse.text();
+    console.log("Google API raw response:", text);
+
     if (!apiResponse.ok) {
       throw new Error(`API request failed: ${apiResponse.status}`);
     }
@@ -79,7 +82,7 @@ export async function onRequestPost(context: {
     return new Response(apiResponse.body, {
       headers: {
         ...corsHeaders,
-        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Type": "application/json",
       },
     });
   } catch (error) {
