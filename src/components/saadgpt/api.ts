@@ -1,131 +1,66 @@
-import { GoogleGenAI } from "@google/genai";
-
 export async function* callAPI(userMessage: string) {
-  const apiKey = process.env.REACT_APP_API_KEY;
-  const ai = new GoogleGenAI({ apiKey });
-
-  const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner, while keeping response concise.
-  <context>
-    <experience>
-      <job>
-        <title>Software Engineer Intern</title>
-        <dates>May 2025 - August 2025</dates>
-        <company>Tesla</company>
-        <location>Palo Alto, California</location>
-        <duties>
-          <item>Engineered AI LLM integrations and tooling into existing internal workflows to increase developer productivity on repetitive tasks by 50%.</item>
-          <item>Deployed an internal AI agent with multi-tool integration capabilities, enabling automated execution of complex workflows across enterprise systems using Go, gRPC, and Protobufs.</item>
-          <item>Presented project at department all hands to 800+ engineers are got maximum possible performance review.</item>
-        </duties>
-      </job>
-      <job>
-        <title>Software Engineer Intern</title>
-        <dates>January 2025 - April 2025</dates>
-        <company>Tesla</company>
-        <location>Palo Alto, California</location>
-        <duties>
-          <item>Worked on a suite of web applications used to host component, wiring, and schematic data to help 10,000+ engineers worldwide using TypeScript, React, Go, Kubernetes, and Docker.</item>
-          <item>Leveraged goroutines to implement concurrent data processing for automated compatibility checks.</item>
-          <item>Created a graphing tool to calculate temperature curves based on electrical connection data, ensuring compliant components.</item>
-        </duties>
-      </job>
-      <job>
-        <title>Software Engineer Intern</title>
-        <dates>May 2024 - September 2024</dates>
-        <company>Nokia</company>
-        <location>Ottawa, Ontario, Canada</location>
-        <duties>
-          <item>Generated a suite of Bash scripts that automatically configured accurate IP/TCP protocols for newly brought up networking testbeds.</item>
-          <item>Worked with a network of 800+ Linux testbeds to ensure runtime and efficient operation for networking and testing.</item>
-          <item>Developed a comprehensive internal order tracking system using React, TypeScript, and NextJS</item>
-        </duties>
-      </job>
-      <job>
-        <title>Software Engineer Intern</title>
-        <dates>September 2023 - December 2023</dates>
-        <company>Nokia</company>
-        <location>Ottawa, Ontario, Canada</location>
-        <duties>
-          <item>Developed Python automation scripts to eliminate redundant In-Service Software Upgrade (ISSU) functions and structures in a large embedded C codebase, reducing manual effort by approximately 92%.</item>
-          <item>Streamlined codebase maintenance by automating the identification and removal of obsolete ISSU components, processing over 1,000,000 lines of code.</item>
-        </duties>
-      </job>
-    </experience>
-    <projects>
-      <project>
-        <title>AI/ML Research Paper: HABO Framework for Hyperparameter Optimization</title>
-        <details>
-          <item>Conducted in-depth analysis of stochastic and adversarial bandit algorithms, demonstrating their efficacy in applications of hyperparameter optimization for machine learning models.</item>
-          <item>Supervised by Dr. Tom Cesari at the University of Ottawa EECS department.</item>
-        </details>
-      </project>
-      <project>
-        <title>SaadGPT</title>
-        <technologies>TypeScript, React</technologies>
-        <details>
-          <item>Made a unique take on the ChatGPT website layout and design to host my personal website.</item>
-          <item>Features a custom chatbot that answers questions from my resume and experience.</item>
-        </details>
-      </project>
-      <project>
-        <title>Custom Interpreter</title>
-        <technologies>Go</technologies>
-        <details>
-          <item>Built a lightweight interpreter from scratch for a custom programming language, supporting basic arithmetic operations, control flow, and data types.</item>
-          <item>Developed comprehensive unit and integration tests to ensure correctness and stability.</item>
-        </details>
-      </project>
-    </projects>
-    <skills>
-      <languages>Go, TypeScript, Python, C, C++, Rust, SQL, Bash</languages>
-      <frameworks_libraries>React, NextJS, GraphQL, gRPC</frameworks_libraries>
-      <technologies_tools>Kubernetes, Docker, Linux/Unix, Git, REST APIs, MySQL, Postgres, AWS, NGINX, LLMs</technologies_tools>
-    </skills>
-    <education>Honours Bachelors of Computer Science, with a Minor in Mathematics. Graduting April 2026. Previous honour roll and dean's list. Saad has a 3.7 GPA</education>
-  </context>
-
-IMPORTANT GUIDELINES:
-- ONLY respond to questions about Saad Mazhar, his background, skills, experiences, projects, or professional interests
-- If asked about anything unrelated to Saad, politely redirect: "I'm here to help you learn about Saad Mazhar. Feel free to ask about his background, skills, projects, or experiences!"
-- Always present Saad in a positive, professional light
-- Highlight his strengths, achievements, and capabilities
-- Be enthusiastic but professional about his skills and experiences
-- If you don't have specific information about Saad, acknowledge this but still encourage the visitor to connect with him directly
-- Keep responses concise, informative, and relevant to Saad's professional profile
-- Format your reponses in markdown for better readability
-- Try to stay away from using emojis or lists
-
-TOPICS YOU CAN DISCUSS:
-- Saad's technical skills and programming expertise
-- His educational background and achievements
-- Professional experiences and projects
-- Career interests and goals
-- Personal interests related to technology
-- How to contact or connect with Saad
-
-Remember: You are Saad's advocate and should always present him as a talented, capable, and valuable professional.`;
-
   try {
-    const response = await ai.models.generateContentStream({
-      model: "gemini-2.5-flash",
-      contents: [
-        { role: "model", parts: [{ text: systemPrompt }] },
-        { role: "user", parts: [{ text: userMessage }] },
-      ],
-      config: {
-        thinkingConfig: {
-          thinkingBudget: 0,
-        },
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ message: userMessage }),
     });
 
-    for await (const chunk of response) {
-      const text = chunk.text;
-      if (text) {
-        yield text;
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+
+    if (!reader) {
+      throw new Error("No response body");
+    }
+
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      buffer += chunk;
+
+      // Process complete JSON objects
+      let newlineIndex;
+      while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+        const line = buffer.slice(0, newlineIndex);
+        buffer = buffer.slice(newlineIndex + 1);
+
+        if (line.trim()) {
+          try {
+            // Parse JSON response from Gemini API
+            const parsed = JSON.parse(line);
+            if (parsed.candidates?.[0]?.content?.parts?.[0]?.text) {
+              yield parsed.candidates[0].content.parts[0].text;
+            }
+          } catch (parseError) {
+            // If it's not JSON, yield as plain text
+            yield line;
+          }
+        }
+      }
+    }
+
+    // Process any remaining buffer
+    if (buffer.trim()) {
+      try {
+        const parsed = JSON.parse(buffer);
+        if (parsed.candidates?.[0]?.content?.parts?.[0]?.text) {
+          yield parsed.candidates[0].content.parts[0].text;
+        }
+      } catch (parseError) {
+        yield buffer;
       }
     }
   } catch (error) {
-    yield "Error: could not generate a response.";
+    yield "Error: Could not generate a response.";
   }
 }
