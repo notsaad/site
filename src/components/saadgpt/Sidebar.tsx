@@ -11,7 +11,7 @@ export const Sidebar: React.FC = () => {
       id: "1",
       title: "This Site!",
       technologies: "Typescript, React",
-      url: "/",
+      url: "https://github.com/notsaad/site",
       displayDate: "June 2025",
     },
     {
