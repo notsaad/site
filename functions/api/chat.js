@@ -1,15 +1,4 @@
-export interface Env {
-  GOOGLE_API_KEY: string;
-}
-
-interface ChatRequest {
-  message: string;
-}
-
-export async function onRequestPost(context: {
-  request: Request;
-  env: Env;
-}): Promise<Response> {
+export async function onRequestPost(context) {
   const { request, env } = context;
 
   // Handle CORS
@@ -20,7 +9,7 @@ export async function onRequestPost(context: {
   };
 
   try {
-    const { message }: ChatRequest = await request.json();
+    const { message } = await request.json();
 
     if (!message) {
       return new Response("Message is required", {
@@ -95,7 +84,7 @@ export async function onRequestPost(context: {
 }
 
 // Handle OPTIONS requests for CORS
-export async function onRequestOptions(): Promise<Response> {
+export async function onRequestOptions() {
   return new Response(null, {
     headers: {
       "Access-Control-Allow-Origin": "*",
