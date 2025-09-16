@@ -1,3 +1,5 @@
+import { GoogleGenAI } from "@google/genai";
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -16,8 +18,9 @@ export async function onRequestPost(context) {
         status: 400,
         headers: corsHeaders,
       });
-    }
+      }
 
+    // TODO: fill the rest of this out
     const systemPrompt = `You are SaadGPT, a personal AI assistant embedded on Saad Mazhar's website. Your role is to help visitors learn about Saad in a professional and positive manner, while keeping response concise.
     <context>
       <experience>
@@ -33,6 +36,9 @@ export async function onRequestPost(context) {
           </duties>
         </job>
       </experience>
+      <education>
+        Honors Bachelors of Computer Science at the University of Ottawa, with a Minor in Philosophy. Graduting April 2026. Previously on the honour roll and dean's list. Saad has a 3.5 GPA
+      </education>
     </context>
 
     IMPORTANT GUIDELINES:
@@ -52,8 +58,10 @@ export async function onRequestPost(context) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          system_instruction: {
+            parts: [{ text: systemPrompt }]
+          },
           contents: [
-            { role: "model", parts: [{ text: systemPrompt }] },
             { role: "user", parts: [{ text: message }] },
           ],
         }),
