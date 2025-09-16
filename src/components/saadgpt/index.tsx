@@ -10,6 +10,7 @@ interface MessageType {
   content: string;
   isUser: boolean;
   timestamp: Date;
+  isLoading: boolean;
 }
 
 export const SaadGPT: React.FC = () => {
@@ -28,6 +29,7 @@ export const SaadGPT: React.FC = () => {
       content: message,
       isUser: true,
       timestamp: new Date(),
+      isLoading: false,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -40,6 +42,7 @@ export const SaadGPT: React.FC = () => {
       content: "",
       isUser: false,
       timestamp: new Date(),
+      isLoading: true,
     };
 
     // Add empty bot message to messages
@@ -47,13 +50,27 @@ export const SaadGPT: React.FC = () => {
 
     try {
       const responseStream = callAPI(userMessage.content);
+      let hasReceivedChunk = false;
 
       for await (const chunk of responseStream) {
+        hasReceivedChunk = true;
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === botMessageId
-              ? { ...msg, content: msg.content + chunk }
+              ? {
+                  ...msg,
+                  content: msg.content + chunk,
+                  isLoading: false,
+                }
               : msg,
+          ),
+        );
+      }
+
+      if (!hasReceivedChunk) {
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === botMessageId ? { ...msg, isLoading: false } : msg,
           ),
         );
       }
@@ -65,11 +82,17 @@ export const SaadGPT: React.FC = () => {
             ? {
                 ...msg,
                 content: "Sorry, I encountered an error. Please try again.",
+                isLoading: false,
               }
             : msg,
         ),
       );
     } finally {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === botMessageId ? { ...msg, isLoading: false } : msg,
+        ),
+      );
       setIsProcessing(false);
     }
   };
@@ -117,6 +140,7 @@ export const SaadGPT: React.FC = () => {
                   key={message.id}
                   content={message.content}
                   isUser={message.isUser}
+                  isLoading={message.isLoading}
                 />
               ))}
             </div>

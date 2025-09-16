@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -67,6 +67,43 @@ export const MessageContent = styled.div<{ isUser: boolean }>`
 export const TextContent = styled.div`
   line-height: 1.4;
   font-size: 14px;
+`;
+
+const typingBounce = keyframes`
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
+export const TypingIndicator = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 16px;
+`;
+
+export const TypingDot = styled.span`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation: ${typingBounce} 1.4s ease-in-out infinite;
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.4s;
+  }
 `;
 
 export const InputContainer = styled.div`
