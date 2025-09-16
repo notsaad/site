@@ -2,7 +2,6 @@
   "name": "site",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8788",
   "dependencies": {
     "@google/genai": "^1.7.0",
     "@testing-library/dom": "^10.4.0",
