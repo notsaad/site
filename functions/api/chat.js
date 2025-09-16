@@ -1,5 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
-
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -72,11 +70,128 @@ export async function onRequestPost(context) {
       throw new Error(`API request failed: ${apiResponse.status}`);
     }
 
-    // Return the streaming response
-    return new Response(apiResponse.body, {
+    const upstreamBody = apiResponse.body;
+
+    if (!upstreamBody) {
+      throw new Error("No response body received from Gemini");
+    }
+
+    const stream = new ReadableStream({
+      start(controller) {
+        const reader = upstreamBody.getReader();
+        const decoder = new TextDecoder();
+        const encoder = new TextEncoder();
+        let buffer = "";
+
+        const emitFromPayload = (payload) => {
+          const parts = payload?.candidates?.[0]?.content?.parts ?? [];
+          for (const part of parts) {
+            if (typeof part.text === "string" && part.text.length > 0) {
+              controller.enqueue(encoder.encode(part.text));
+            }
+          }
+        };
+
+        const processBuffer = () => {
+          let current = buffer;
+
+          while (true) {
+            const firstBrace = current.indexOf("{");
+            if (firstBrace === -1) {
+              buffer = current;
+              return;
+            }
+
+            if (firstBrace > 0) {
+              current = current.slice(firstBrace);
+            }
+
+            let depth = 0;
+            let inString = false;
+            let isEscaped = false;
+            let endIndex = -1;
+
+            for (let i = 0; i < current.length; i++) {
+              const char = current[i];
+
+              if (inString) {
+                if (isEscaped) {
+                  isEscaped = false;
+                  continue;
+                }
+
+                if (char === "\\") {
+                  isEscaped = true;
+                } else if (char === "\"") {
+                  inString = false;
+                }
+                continue;
+              }
+
+              if (char === "\"") {
+                inString = true;
+                continue;
+              }
+
+              if (char === "{") {
+                depth += 1;
+                continue;
+              }
+
+              if (char === "}") {
+                depth -= 1;
+                if (depth === 0) {
+                  endIndex = i;
+                  break;
+                }
+              }
+            }
+
+            if (endIndex === -1) {
+              buffer = current;
+              return;
+            }
+
+            const jsonChunk = current.slice(0, endIndex + 1);
+            current = current.slice(endIndex + 1).replace(/^[\s,\]]*/, "");
+
+            try {
+              emitFromPayload(JSON.parse(jsonChunk));
+            } catch (parseError) {
+              console.error("Failed to parse stream chunk", parseError);
+            }
+          }
+        };
+
+        const pump = () =>
+          reader
+            .read()
+            .then(({ value, done }) => {
+              if (done) {
+                buffer += decoder.decode();
+                processBuffer();
+                controller.close();
+                return;
+              }
+
+              buffer += decoder.decode(value, { stream: true });
+              processBuffer();
+              return pump();
+            })
+            .catch((streamError) => {
+              console.error("Error reading Gemini stream", streamError);
+              controller.error(streamError);
+            });
+
+        pump();
+      },
+    });
+
+    return new Response(stream, {
       headers: {
         ...corsHeaders,
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache",
       },
     });
   } catch (error) {
