@@ -1,22 +1,4 @@
-# Personal Portfolio Website
+# saadmazhar.com
 
-A minimal, elegant and stylish personal portfolio website built with React and TypeScript.
-
-## Features
-
-- Clean and modern design
-- Fully responsive layout
-- Built with React and TypeScript
-- Styled with Styled Components
-- Easy to customize with theme configuration
-
-## Sections
-- **Header**: Name, short bio, email
-- **Education**: School, major, expected graduation
-- **Experience**: List of prior internships with clickable expansion
-- **Projects**: Portfolio of work with clickable repo links
-- **Footer**: Contact information, linkedin, github
-
-## Tech Stack
-- React
-- TypeScript
+A simple, stylish, personal website that includes a personalized chatbot.
+<img width="761" height="361" alt="image" src="https://github.com/user-attachments/assets/c41e632d-1beb-4cbb-9548-f40e2405b9b7" />
