@@ -9,7 +9,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import ThemeToggle from "./components/ThemeToggle";
 import Background from "./components/Background";
 import { SaadGPT } from "./components/saadgpt";
-import Resume from "./components/Resume";
+import Resume from "./components/resume";
 import BlogHome from "./components/blog/BlogHome";
 import BlogPost from "./components/blog/BlogPost";
 
