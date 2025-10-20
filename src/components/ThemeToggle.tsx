@@ -78,6 +78,7 @@ export const ThemeToggle: React.FC = () => {
       </ToggleBox>
       <RoutingBox isDark={isDarkMode} text="SAADGPT" route="/saadgpt" />
       <RoutingBox isDark={isDarkMode} text="RESUME" route="/resume" />
+      <RoutingBox isDark={isDarkMode} text="BLOG" route="/blog" />
       <RoutingBox isDark={isDarkMode} text="HOME" route="/" />
     </ToggleContainer>
   );
