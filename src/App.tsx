@@ -11,7 +11,6 @@ import Background from "./components/Background";
 import { SaadGPT } from "./components/saadgpt";
 import Resume from "./components/resume";
 import BlogHome from "./components/blog/BlogHome";
-import BlogPost from "./components/blog/BlogPost";
 
 const projects = [
   {
@@ -142,7 +141,6 @@ const App = () => {
         <Route path="/saadgpt" element={<SaadGPT />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/blog" element={<BlogHome />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
     </ThemeProvider>
   );
