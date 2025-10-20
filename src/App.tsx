@@ -5,7 +5,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider } from "./components/styles/ThemeProvider";
 import ThemeToggle from "./components/ThemeToggle";
 import Background from "./components/Background";
 import { SaadGPT } from "./components/saadgpt";

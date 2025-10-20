@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BlogLayout from "./BlogLayout";
 import { blogPosts } from "./posts";
 import { theme } from "../../styles/theme";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "../styles/ThemeProvider";
 
 const List = styled.div`
   display: flex;

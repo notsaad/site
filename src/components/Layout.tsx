@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../styles/theme";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "./styles/ThemeProvider";
 
 const Container = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "isDark",

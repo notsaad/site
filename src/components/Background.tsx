@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useTheme } from './ThemeProvider';
+import { useTheme } from './styles/ThemeProvider';
 
 const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

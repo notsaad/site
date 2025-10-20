@@ -1,7 +1,7 @@
 import Layout from "../Layout";
-import { StyledLink } from "../styled";
+import { StyledLink } from "../styles/styled";
 import ThemeToggle from "../ThemeToggle";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "../styles/ThemeProvider";
 
 const Resume = () => {
   const { isDarkMode } = useTheme();

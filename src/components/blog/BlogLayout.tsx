@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useTheme } from "../ThemeProvider";
+import { useTheme } from "../styles/ThemeProvider";
 import { theme } from "../../styles/theme";
 
 const Page = styled.div.withConfig({
