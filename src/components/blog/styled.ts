@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { theme } from "../../styles/theme";
 
+export const Icon = styled.svg`
+  width: 1.25rem;
+  height: 1.25rem;
+`;
+
 export const IconButton = styled.button`
   border-radius: 999px;
 `;

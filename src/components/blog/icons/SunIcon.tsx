@@ -1,12 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import { Icon } from "../styled";
 
-const Icon = styled.svg`
-  width: 1.25rem;
-  height: 1.25rem;
-`;
-
-const SunIcon: React.FC = () => (
+export const SunIcon: React.FC = () => (
   <Icon viewBox="0 0 24 24" role="img" aria-hidden="true">
     <circle cx="12" cy="12" r="4" fill="currentColor" />
     <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
