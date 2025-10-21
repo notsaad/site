@@ -8,11 +8,11 @@ export const Icon = styled.svg`
 `;
 
 export const IconButton = styled.button`
-  border-radius: 999px;
+  border-radius: 9px;
 `;
 
 export const HomeLink = styled(Link)`
-  border-radius: 999px;
+  border-radius: 9px;
 `;
 
 export const Controls = styled.div.withConfig({
